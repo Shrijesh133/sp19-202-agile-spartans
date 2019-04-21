@@ -10,7 +10,7 @@
 - Task2: Implementing UI
 
 ### Problems
-No blockera
+No blockers
 
 ### Time Spend
 
