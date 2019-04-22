@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public abstract class Move extends Actor
 {
-    private anyFieldsMoved;
+    protected anyFieldsMoved;
 
     private Field[][] field;
 
@@ -13,7 +13,7 @@ public abstract class Move extends Actor
     }
 
 
-    abstract int moveDirection();
+    abstract int moveDirection(field);
 
     public final int move() {
 
