@@ -19,4 +19,21 @@ public class NumericKeysPlayingOption implements IPlayingOptions
    public void Move()
    {
    }
+   
+      public String upKey()
+    {
+       return "8";
+    }
+    public String downKey()
+    {
+       return "2";
+    }
+    public String leftKey()
+    {
+      return "4";
+    }
+    public String rightKey()
+    {
+      return "6";
+    }
 }

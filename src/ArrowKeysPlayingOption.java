@@ -19,4 +19,21 @@ public class ArrowKeysPlayingOption implements IPlayingOptions
     public void Move()
     {
     }
+    
+    public String upKey()
+    {
+       return "up";
+    }
+    public String downKey()
+    {
+       return "down";
+    }
+    public String leftKey()
+    {
+      return "left";
+    }
+    public String rightKey()
+    {
+      return "right";
+    }
 }

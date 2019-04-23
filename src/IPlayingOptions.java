@@ -11,5 +11,9 @@ public interface IPlayingOptions
      * Move in any of the four directions
      */
     public void Move();
-
+    
+    public String upKey();
+    public String downKey();
+    public String leftKey();
+    public String rightKey();
 }
