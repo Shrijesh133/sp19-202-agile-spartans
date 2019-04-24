@@ -6,27 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GameNotStartedState extends GameState implements IGameState
+public class GameNotStartedState extends GameState 
 {
-    /**
-     * Act - do whatever the GameRunningState wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    } 
-    
-    
-    public void restart() {
+   
+    public GameNotStartedState(Board b){
+         super(b);
     }
     
+    @Override
     public void play(){
+      System.out.println("Game Running");
     }
-    
-    public void pause(){
-    }
-    
-    public void resume() {
-    }
+   
 }

@@ -8,25 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GamePausedState extends GameState implements IGameState
 {
-    /**
-     * Act - do whatever the GameRunningState wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    } 
-    
-    
-    public void restart() {
+   
+    public GamePausedState(Board b){
+        super(b);
     }
     
-    public void play(){
-    }
-    
-    public void pause(){
-    }
-    
+    @Override
     public void resume() {
+        System.out.println("Game resumed");
     }
 }

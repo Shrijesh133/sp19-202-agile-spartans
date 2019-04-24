@@ -8,26 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameRunningState extends GameState 
 {
-    /**
-     * Act - do whatever the GameRunningState wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    } 
     
     
-    public void restart() {
+    public GameRunningState(Board b){
+         super(b);
     }
     
+    @Override
     public void play(){
         System.out.println("Game Running");
     }
     
-    public void pause(){
-    }
-    
-    public void resume() {
-    }
+   
 }

@@ -25,9 +25,17 @@ public class Board extends Actor
     private boolean right=false;
     private boolean gameOver=false;
     private boolean isOver;
+    private IGameState gameNotStartedState;
+    private IGameState gamePausedState;
+    private IGameState gameOverState;
+    private IGameState gameRunningState;
+    private IGameState currentState;
+    
+    
 
     public Board() //Konstruktor macht die "Spielvorbereitungen"
     {
+        
         field = new Field[4][4];
         debugMode=false;
         isOver=false;
@@ -40,6 +48,12 @@ public class Board extends Actor
             updateFieldVisuals();
             printScore(false);
         }
+        
+        gameRunningState = new GameRunningState(this);
+        gameNotStartedState = new GameNotStartedState(this);
+        gamePausedState = new GamePausedState(this);
+        gameOverState = new GameOverState(this);
+        currentState = gameNotStartedState;
     }
 
     public void act()

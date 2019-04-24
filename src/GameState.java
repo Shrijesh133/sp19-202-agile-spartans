@@ -8,15 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameState implements IGameState
 {
-    /**
-     * Act - do whatever the GameState wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }  
-    
+    Board board;
+    public GameState(Board b){
+        board = b ;
+    }
+   
     public void restart() {
     }
     
@@ -29,3 +25,4 @@ public class GameState implements IGameState
     public void resume() {
     }
 }
+
