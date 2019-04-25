@@ -24,6 +24,9 @@ public class Board extends Actor
     private boolean right=false;
     private boolean gameOver=false;
     private boolean isOver;
+
+    private Move move ;
+
     private IGameState gameNotStartedState;
     private IGameState gamePausedState;
     private IGameState gameOverState;
@@ -32,11 +35,15 @@ public class Board extends Actor
     
     
 
+
     public Board() //Constructor makes the "game preparations"
     {
         
         field = new Field[4][4];
         debugMode=false;
+
+        isOver=false;
+       
         //isOver=false;
         highscore=loadHighscore();
         fillField();
@@ -57,7 +64,12 @@ public class Board extends Actor
 
     public void act()
     {
+
+        boolean anyfieldMoved = false;
+         //Versucht das visuelle interface zu laden bis getWorld() keine Probleme mehr macht (macht es sonst wegen Greenfoot)
+
         if(getWorld()!=null&&!fieldInitialized) // try to load the visual interface until getWorld () does not make any more problems (otherwise it does because of Greenfoot)
+
         {
             updateFieldVisuals();
             fieldInitialized=true;
@@ -66,24 +78,34 @@ public class Board extends Actor
         {
             if (Greenfoot.isKeyDown("up")&&!up)
             {
-                move(1);
+               move = new UpMove(field);
+               anyfieldMoved  = move.move();
                 up=true;
             }
             if (Greenfoot.isKeyDown("down")&&!down)
             {
-                move(2);
+                move = new DownMove(field);
+               anyfieldMoved  = move.move();
                 down=true;
             }
             if (Greenfoot.isKeyDown("left")&&!left)
             {
-                move(3);
+               move = new LeftMove(field);
+               anyfieldMoved  = move.move();
                 left=true;
             }
             if (Greenfoot.isKeyDown("right")&&!right)
             {
-                move(4);
+                move = new RightMove(field);
+               anyfieldMoved  = move.move();
                 right=true;
             }
+            
+         if (anyfieldMoved)
+        {
+            updateFieldVisuals();
+            placeRandomField(); //Setzt ein neues zufälliges Feld, falls Felder bewegt wurden
+        }
             setHighscore();
             printScore(false);
         }
@@ -487,11 +509,7 @@ public class Board extends Actor
                 break;
             }
         }
-        if (anyFieldsMoved)
-        {
-            updateFieldVisuals();
-            placeRandomField(); //Setzt ein neues zufälliges Feld, falls Felder bewegt wurden
-        }
+       
     }
 
     public boolean checkForMovableFields() //Prüft, ob noch bewegbare Felder existieren
