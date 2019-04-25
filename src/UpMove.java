@@ -1,35 +1,43 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class UpMove extends Move {
+    
+    
+     public UpMove(Field[][] field) {
+        super(field);
+    }
 
-    @Override
-    int moveOperation(Field[][] field) {
+     @Override
+    boolean moveDirection(Field[][] field,int score) {
 
-        int score  = 0;
-
-        for (y=1; y< field.length; y++) //Nested for loop to manipulate the respective fields of the array
-        {
-            for (x=0; x< field.length; x++)
-            {
-                for (int i=1; i< field.length; i++) // Another for loop, in case a field can be moved by several units
+         boolean anyfieldMoved = false;
+        int x;
+        int y;
+        
+        
+  for (y=1; y< field.length; y++) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
                 {
-                    if (field[x][i].getValue()!=0&&field[x][i-1].getMoved()==false&&field[x][i].getMoved()==false&&(field[x][i-1].getValue()==field[x][i].getValue()||field[x][i-1].getValue()==0))
+                    for (x=0; x< field.length; x++)
                     {
-                        if(field[x][i-1].getValue()!=0)
+                        for (int i=1; i< field.length; i++) //Noch eine for-Schleife, für den Fall dass ein Feld um mehrere Einheiten bewegt werden kann
                         {
-                            score = score + field[x][i].getValue()*2//Add score
-                            //field[x][i].setMoved(true);
-                            field[x][i-1].setMoved(true); //moved is set to true so that no fields are added twice
-                        }
-                        field[x][i-1].setValue(field[x][i].getValue()+field[x][i-1].getValue()); //Add values
-                        field[x][i].setValue(0); //Sets previous value to 0
-                        this.anyFieldsMoved=true; //Fields were moved
+                            if (field[x][i].getValue()!=0&&field[x][i-1].getMoved()==false&&field[x][i].getMoved()==false&&(field[x][i-1].getValue()==field[x][i].getValue()||field[x][i-1].getValue()==0))
+                            {
+                                if(field[x][i-1].getValue()!=0)
+                                {
+                                    score += (field[x][i].getValue()*2); //Fügt Punktzahl zum Score hinzu
+                                    //field[x][i].setMoved(true);
+                                    field[x][i-1].setMoved(true); //moved wird auf true gesetzt, damit keine Felder doppelt addiert werden
+                                }
+                                field[x][i-1].setValue(field[x][i].getValue()+field[x][i-1].getValue()); //Addiert Werte
+                                field[x][i].setValue(0); //Setzt vorherigen Wert auf 0
+                                anyfieldMoved=true; //Es wurden Felder bewegt
 
+                            }
+                        }
                     }
                 }
-            }
-        }
-    return  score;
+    return  anyfieldMoved;
     }
 
 }
