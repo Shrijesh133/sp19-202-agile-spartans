@@ -62,7 +62,7 @@ public class Board extends Actor
             updateFieldVisuals();
             fieldInitialized=true;
         }
-        if(checkForMovableFields()&&!(currentState != gameOverState && currentState != gameNotStartedState)) // Move and add only while the game is running
+        if(checkForMovableFields()&&!(currentState == gameOverState || currentState == gamePausedState)) // Move and add only while the game is running
         {
             if (Greenfoot.isKeyDown("up")&&!up)
             {
@@ -89,16 +89,6 @@ public class Board extends Actor
         }
         else // Cancel the Game / Game Over
         {
-           /* gameOver=true;
-            if (!isOver)
-            {
-                showGameOverScreen();
-                setHighscore();
-                saveHighscore(highscore);
-                isOver=true;
-            }
-            printScore(true); */
-            
             currentState = gameOverState;
             if (currentState == gameOverState)
             {
