@@ -2,11 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 public class Board extends Actor
 {
-    //Board verwaltet so ziemlich alles, was das Spiel ausmacht (würde man es nur aufs Gameplay reduzieren) | if(getWorld()!=null) ist an vielen Stellen vorhanden, da es sonst in ältereen Greenfoot-Versionen zu Fehlern kommen kann
+    // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
+    private Field[][] field; // Field array is declared
 
-    private Field[][] field; //Field-Array wird deklariert
-
-    private Number number; //Actor-Referenzen werden deklariert/initialisiert
+    private Number number; //Actor references are declared / initialized
     private Score scoreActor;
     private Highscore highScoreActor;
     private ScoreShadow scoreShadowActor;
@@ -15,7 +14,7 @@ public class Board extends Actor
     private GameOverOverlay gameOverOverlay;
     private PlayButton playButton = new PlayButton(true);
 
-    private int highscore=0; //Einfache Variabeln werden deklariert/initialisiert
+    private int highscore=0; //Simple variables are declared / initialized
     private int score=0;
     private boolean debugMode;
     private boolean fieldInitialized=false;
@@ -25,14 +24,27 @@ public class Board extends Actor
     private boolean right=false;
     private boolean gameOver=false;
     private boolean isOver;
+
     private Move move ;
 
-    public Board() //Konstruktor macht die "Spielvorbereitungen"
+    private IGameState gameNotStartedState;
+    private IGameState gamePausedState;
+    private IGameState gameOverState;
+    private IGameState gameRunningState;
+    private IGameState currentState;
+    
+    
+
+
+    public Board() //Constructor makes the "game preparations"
     {
+        
         field = new Field[4][4];
         debugMode=false;
+
         isOver=false;
        
+        //isOver=false;
         highscore=loadHighscore();
         fillField();
         placeRandomField();
@@ -42,17 +54,27 @@ public class Board extends Actor
             updateFieldVisuals();
             printScore(false);
         }
+        
+        gameRunningState = new GameRunningState(this);
+        gameNotStartedState = new GameNotStartedState(this);
+        gamePausedState = new GamePausedState(this);
+        gameOverState = new GameOverState(this);
+        currentState = gameNotStartedState;
     }
 
     public void act()
     {
+
         boolean anyfieldMoved = false;
-        if(getWorld()!=null&&!fieldInitialized) //Versucht das visuelle interface zu laden bis getWorld() keine Probleme mehr macht (macht es sonst wegen Greenfoot)
+         //Versucht das visuelle interface zu laden bis getWorld() keine Probleme mehr macht (macht es sonst wegen Greenfoot)
+
+        if(getWorld()!=null&&!fieldInitialized) // try to load the visual interface until getWorld () does not make any more problems (otherwise it does because of Greenfoot)
+
         {
             updateFieldVisuals();
             fieldInitialized=true;
         }
-        if(checkForMovableFields()&&!gameOver) //Bewegt und addiert nur, solange das Spiel läuft
+        if(checkForMovableFields()&&!(currentState == gameOverState || currentState == gamePausedState)) // Move and add only while the game is running
         {
             if (Greenfoot.isKeyDown("up")&&!up)
             {
@@ -87,15 +109,15 @@ public class Board extends Actor
             setHighscore();
             printScore(false);
         }
-        else //Abbruch des Spiels/Game Over
+        else // Cancel the Game / Game Over
         {
-            gameOver=true;
-            if (!isOver)
+            currentState = gameOverState;
+            if (currentState == gameOverState)
             {
                 showGameOverScreen();
                 setHighscore();
                 saveHighscore(highscore);
-                isOver=true;
+               // isOver=true;
             }
             printScore(true);
         }
@@ -120,7 +142,7 @@ public class Board extends Actor
 
     public void showGameOverScreen() //Zeigt das Game Over Overlay an
     {
-        gameOver=true;
+       // gameOver=true;
         if(getWorld()!=null)
         {
             for (int i=0; i<127;i=i+2)
