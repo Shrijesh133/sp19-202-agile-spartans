@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
-public class Board extends Actor
+import java.util.ArrayList;
+public class Board extends Actor 
 {
     // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
     private Field[][] field; // Field array is declared
@@ -13,6 +14,10 @@ public class Board extends Actor
     private GameOverText gameOverText = new GameOverText();
     private GameOverOverlay gameOverOverlay;
     private PlayButton playButton = new PlayButton(true);
+    
+    
+    private int width;
+    private int height;
 
     private int highscore=0; //Simple variables are declared / initialized
     private int score=0;
@@ -66,21 +71,25 @@ public class Board extends Actor
         {
             if (Greenfoot.isKeyDown("up")&&!up)
             {
+                currentState.play();
                 move(1);
                 up=true;
             }
             if (Greenfoot.isKeyDown("down")&&!down)
             {
+                currentState.play();
                 move(2);
                 down=true;
             }
             if (Greenfoot.isKeyDown("left")&&!left)
             {
+                currentState.play();
                 move(3);
                 left=true;
             }
             if (Greenfoot.isKeyDown("right")&&!right)
             {
+                currentState.play();
                 move(4);
                 right=true;
             }
@@ -116,6 +125,16 @@ public class Board extends Actor
         {
             right=false;
         }
+    }
+    
+    public void setState(String gameState) {
+        if(gameState == "Playing" || gameState == "Resumed"){
+        currentState = gameRunningState;
+    }  else if(gameState == "Restarted") {
+        currentState = gameNotStartedState;
+    } else if(gameState == "Paused") {
+        currentState = gamePausedState;
+    }
     }
 
     public void showGameOverScreen() //Zeigt das Game Over Overlay an
@@ -573,4 +592,7 @@ public class Board extends Actor
         field[pX][pY].setValue(pValue);
         updateFieldVisuals();
     }
+    
+    
+	
 }
