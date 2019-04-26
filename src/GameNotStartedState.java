@@ -15,7 +15,7 @@ public class GameNotStartedState extends GameState
     
     @Override
     public void play(){
-      System.out.println("Game Running");
+      board.setState("Playing");
     }
    
 }

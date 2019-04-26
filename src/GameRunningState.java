@@ -15,8 +15,8 @@ public class GameRunningState extends GameState
     }
     
     @Override
-    public void play(){
-        System.out.println("Game Running");
+    public void pause(){
+       board.setState("Paused");
     }
     
    

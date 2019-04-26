@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
-public class Board extends Actor
+import java.util.ArrayList;
+public class Board extends Actor 
 {
     // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
     private Field[][] field; // Field array is declared
@@ -13,6 +14,10 @@ public class Board extends Actor
     private GameOverText gameOverText = new GameOverText();
     private GameOverOverlay gameOverOverlay;
     private PlayButton playButton = new PlayButton(true);
+    
+   
+    private int width;
+    private int height;
 
     private int highscore=0; //Simple variables are declared / initialized
     private int score=0;
@@ -42,9 +47,7 @@ public class Board extends Actor
         field = new Field[4][4];
         debugMode=false;
 
-        isOver=false;
-       
-        //isOver=false;
+        
         highscore=loadHighscore();
         fillField();
         placeRandomField();
@@ -66,7 +69,8 @@ public class Board extends Actor
     {
 
         boolean anyfieldMoved = false;
-         //Versucht das visuelle interface zu laden bis getWorld() keine Probleme mehr macht (macht es sonst wegen Greenfoot)
+         
+     
 
         if(getWorld()!=null&&!fieldInitialized) // try to load the visual interface until getWorld () does not make any more problems (otherwise it does because of Greenfoot)
 
@@ -79,26 +83,41 @@ public class Board extends Actor
             setAllMovedFalse();
             if (Greenfoot.isKeyDown("up")&&!up)
             {
-               move = new UpMove(field);
-               anyfieldMoved  = move.move();
+
+                currentState.play();
+                move = new UpMove(field);
+                anyfieldMoved  = move.move();
                 up=true;
             }
+            
             if (Greenfoot.isKeyDown("down")&&!down)
             {
+
+                currentState.play();
                 move = new DownMove(field);
-               anyfieldMoved  = move.move();
+                anyfieldMoved  = move.move();
                 down=true;
             }
             if (Greenfoot.isKeyDown("left")&&!left)
             {
+
+                currentState.play();
+               
+
                move = new LeftMove(field);
                anyfieldMoved  = move.move();
+
                 left=true;
             }
             if (Greenfoot.isKeyDown("right")&&!right)
             {
+
+                currentState.play();
+               
+
                 move = new RightMove(field);
                anyfieldMoved  = move.move();
+
                 right=true;
             }
             
@@ -139,6 +158,16 @@ public class Board extends Actor
         {
             right=false;
         }
+    }
+    
+    public void setState(String gameState) {
+        if(gameState == "Playing" || gameState == "Resumed"){
+        currentState = gameRunningState;
+    }  else if(gameState == "Restarted") {
+        currentState = gameNotStartedState;
+    } else if(gameState == "Paused") {
+        currentState = gamePausedState;
+    }
     }
 
     public void showGameOverScreen() //Zeigt das Game Over Overlay an
@@ -397,121 +426,7 @@ public class Board extends Actor
         }
     }
 
-    public void move(int pDirection) //Bewegt und verschmilzt die Felder je nach Richtung
-    {
-        int x;
-        int y;
-        boolean anyFieldsMoved=false;
-        setAllMovedFalse();
-        switch (pDirection)
-        {
-            case 1: //Oben
-            {
-                for (y=1; y< field.length; y++) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
-                {
-                    for (x=0; x< field.length; x++)
-                    {
-                        for (int i=1; i< field.length; i++) //Noch eine for-Schleife, für den Fall dass ein Feld um mehrere Einheiten bewegt werden kann
-                        {
-                            if (field[x][i].getValue()!=0&&field[x][i-1].getMoved()==false&&field[x][i].getMoved()==false&&(field[x][i-1].getValue()==field[x][i].getValue()||field[x][i-1].getValue()==0))
-                            {
-                                if(field[x][i-1].getValue()!=0)
-                                {
-                                    addScore(field[x][i].getValue()*2); //Fügt Punktzahl zum Score hinzu
-                                    //field[x][i].setMoved(true);
-                                    field[x][i-1].setMoved(true); //moved wird auf true gesetzt, damit keine Felder doppelt addiert werden
-                                }
-                                field[x][i-1].setValue(field[x][i].getValue()+field[x][i-1].getValue()); //Addiert Werte
-                                field[x][i].setValue(0); //Setzt vorherigen Wert auf 0
-                                anyFieldsMoved=true; //Es wurden Felder bewegt
-
-                            }
-                        }
-                    }
-                }
-                break;
-            }
-            case 2: //Unten
-            {
-                for (y=(field.length-2); y>=0; y--) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
-                {
-                    for (x=0; x< field.length; x++)
-                    {
-                        for (int i=(field.length-2); i>=0; i--) //Noch eine for-Schleife, für den Fall dass ein Feld um mehrere Einheiten bewegt werden kann
-                        {
-                            if(field[x][i].getValue()!=0&&field[x][i+1].getMoved()==false&&field[x][i].getMoved()==false&&(field[x][i+1].getValue()==field[x][i].getValue()||field[x][i+1].getValue()==0))
-                            {
-                                if(field[x][i+1].getValue()!=0)
-                                {
-                                    addScore(field[x][i].getValue()*2); //Fügt Punktzahl zum Score hinzu
-                                    //field[x][i].setMoved(true);
-                                    field[x][i+1].setMoved(true); //moved wird auf true gesetzt, damit keine Felder doppelt addiert werden
-                                }
-                                field[x][i+1].setValue(field[x][i].getValue()+field[x][i+1].getValue()); //Addiert Werte
-                                field[x][i].setValue(0); //Setzt vorherigen Wert auf 0
-                                anyFieldsMoved=true; //Es wurden Felder bewegt
-
-                            }
-                        }
-                    }
-                }
-                break;
-            }
-            case 3: //Links
-            {
-                for (x=1; x<field.length; x++) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
-                {
-                    for (y=0; y< field.length; y++)
-                    {
-                        for (int i=1; i<field.length; i++) //Noch eine for-Schleife, für den Fall dass ein Feld um mehrere Einheiten bewegt werden kann
-                        {
-                            if(field[i][y].getValue()!=0&&field[i-1][y].getMoved()==false&&field[i][y].getMoved()==false&&(field[i-1][y].getValue()==field[i][y].getValue()||field[i-1][y].getValue()==0))
-                            {
-                                if(field[i-1][y].getValue()!=0)
-                                {
-                                    addScore(field[i][y].getValue()*2); //Fügt Punktzahl zum Score hinzu
-                                    //field[i][y].setMoved(true);
-                                    field[i-1][y].setMoved(true); //moved wird auf true gesetzt, damit keine Felder doppelt addiert werden
-                                }
-                                field[i-1][y].setValue(field[i][y].getValue()+field[i-1][y].getValue()); //Addiert Werte
-                                field[i][y].setValue(0); //Setzt vorherigen Wert auf 0
-                                anyFieldsMoved=true; //Es wurden Felder bewegt
-
-                            }
-                        }
-                    }
-                }
-                break;
-            }
-            case 4: //Rechts
-            {
-                for (x=(field.length-2); x>=0; x--) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
-                {
-                    for (y=0; y< field.length; y++)
-                    {
-                        for (int i=(field.length-2); i>=0; i--) //Noch eine for-Schleife, für den Fall dass ein Feld um mehrere Einheiten bewegt werden kann
-                        {
-                            if(field[i][y].getValue()!=0&&field[i+1][y].getMoved()==false&&field[i][y].getMoved()==false&&(field[i+1][y].getValue()==field[i][y].getValue()||field[i+1][y].getValue()==0))
-                            {
-                                if(field[i+1][y].getValue()!=0)
-                                {
-                                    addScore(field[i][y].getValue()*2); //Fügt Punktzahl zum Score hinzu
-                                    //field[i][y].setMoved(true);
-                                    field[i+1][y].setMoved(true); //moved wird auf true gesetzt, damit keine Felder doppelt addiert werden
-                                }
-                                field[i+1][y].setValue(field[i][y].getValue()+field[i+1][y].getValue()); //Addiert Werte
-                                field[i][y].setValue(0); //Setzt vorherigen Wert auf 0
-                                anyFieldsMoved=true; //Es wurden Felder bewegt
-
-                            }
-                        }
-                    }
-                }
-                break;
-            }
-        }
-       
-    }
+    
 
     public boolean checkForMovableFields() //Prüft, ob noch bewegbare Felder existieren
     {
@@ -592,4 +507,6 @@ public class Board extends Actor
         field[pX][pY].setValue(pValue);
         updateFieldVisuals();
     }
+   
+	
 }
