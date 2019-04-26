@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=LeftMove
+comment1.params=field
+comment1.target=LeftMove(Field[][])
+comment2.params=field\ score
+comment2.target=boolean\ moveDirection(Field[][],\ int)
+numComments=3
