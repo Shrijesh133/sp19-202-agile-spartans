@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=HighscoreObserver
+comment1.params=subject
+comment1.target=HighscoreObserver(MoveSubject)
+comment2.params=score
+comment2.target=void\ update(int)
+comment3.params=
+comment3.target=int\ getHighScore()
+comment4.params=score
+comment4.target=void\ saveHighscore(int)
+comment5.params=
+comment5.target=int\ loadHighscore()
+numComments=6
