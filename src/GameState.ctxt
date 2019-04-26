@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=GameState
+comment0.text=\n\ Write\ a\ description\ of\ class\ GameState\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=b
+comment1.target=GameState(Board)
+comment2.params=
+comment2.target=void\ restart()
+comment3.params=
+comment3.target=void\ play()
+comment4.params=
+comment4.target=void\ pause()
+comment5.params=
+comment5.target=void\ resume()
+numComments=6

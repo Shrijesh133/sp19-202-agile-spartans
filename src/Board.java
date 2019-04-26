@@ -80,6 +80,7 @@ public class Board extends Actor
         }
         if(checkForMovableFields()&&!(currentState == gameOverState || currentState == gamePausedState)) // Move and add only while the game is running
         {
+            setAllMovedFalse();
             if (Greenfoot.isKeyDown("up")&&!up)
             {
 

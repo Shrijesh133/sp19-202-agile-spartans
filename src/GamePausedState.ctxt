@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=GamePausedState
+comment0.text=\n\ Write\ a\ description\ of\ class\ GameRunningState\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=b
+comment1.target=GamePausedState(Board)
+comment2.params=
+comment2.target=void\ resume()
+numComments=3
