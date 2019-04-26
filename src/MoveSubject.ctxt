@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=MoveSubject
+comment1.params=field
+comment1.target=MoveSubject(Field[][])
+comment2.params=field\ score
+comment2.target=boolean\ moveDirection(Field[][],\ int)
+comment3.params=
+comment3.target=boolean\ move()
+comment4.params=observer
+comment4.target=void\ attach(Observer)
+comment5.params=
+comment5.target=void\ updateScoreObservers()
+numComments=6

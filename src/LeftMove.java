@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class LeftMove extends Move {
+public class LeftMove extends MoveSubject {
 
     
      public LeftMove(Field[][] field) {

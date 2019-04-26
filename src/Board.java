@@ -25,7 +25,7 @@ public class Board extends Actor
     private boolean gameOver=false;
     private boolean isOver;
 
-    private Move move ;
+    private MoveSubject move ;
 
     private IGameState gameNotStartedState;
     private IGameState gamePausedState;
@@ -45,7 +45,7 @@ public class Board extends Actor
         isOver=false;
        
         //isOver=false;
-        highscore=loadHighscore();
+        highscore=HighscoreObserver.getHighScore();
         fillField();
         placeRandomField();
         placeRandomField();
@@ -107,7 +107,7 @@ public class Board extends Actor
             updateFieldVisuals();
             placeRandomField(); //Setzt ein neues zufälliges Feld, falls Felder bewegt wurden
         }
-            setHighscore();
+            
             printScore(false);
         }
         else // Cancel the Game / Game Over
@@ -116,8 +116,7 @@ public class Board extends Actor
             if (currentState == gameOverState)
             {
                 showGameOverScreen();
-                setHighscore();
-                saveHighscore(highscore);
+              
                // isOver=true;
             }
             printScore(true);
@@ -193,15 +192,15 @@ public class Board extends Actor
         }
     }
 
-    public void addScore(int pAdd) //Addiert Score um pAdd
+    /*public void addScore(int pAdd) //Addiert Score um pAdd
     {
-        score=score+pAdd;
-    }
+       score=score+pAdd;
+    } 
 
     public int getScore() //Getter wegen private
     {
         return score;
-    }
+    } */
 
     public void printScore(boolean gameOver) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
     {
@@ -209,73 +208,36 @@ public class Board extends Actor
         {
             getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
             getWorld().removeObject(highScoreShadowActor);
-            scoreShadowActor = new ScoreShadow(getScore(),false);
+            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
             getWorld().addObject(scoreShadowActor,242,522);
-            highScoreShadowActor = new HighscoreShadow(highscore,false);
+            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),false);
             getWorld().addObject(highScoreShadowActor,242,562);
 
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(getScore(),false);
+            scoreActor = new Score(ScoreObserver.getScore(),false);
             getWorld().addObject(scoreActor,240,520);
-            highScoreActor = new Highscore(highscore,false);
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
             getWorld().addObject(highScoreActor,240,560);
         }
         else if(getWorld()!=null&&gameOver) //Game Over
         {
             getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
             getWorld().removeObject(highScoreShadowActor);
-            scoreShadowActor = new ScoreShadow(getScore(),true);
+            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
             getWorld().addObject(scoreShadowActor,242,182);
-            highScoreShadowActor = new HighscoreShadow(highscore,true);
+            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreShadowActor,242,302);
 
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(getScore(),true);
+            scoreActor = new Score(ScoreObserver.getScore(),true);
             getWorld().addObject(scoreActor,240,180);
-            highScoreActor = new Highscore(highscore,true);
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreActor,240,300);
         }
     }
 
-    public void setHighscore() //Setzt highscore auf score, falls er gebrochen wird
-    {
-        if (score>highscore)
-        {
-            highscore=score;
-        }
-    }
-
-    public void saveHighscore(int pScore) //Speichert highscore in highscore.txt
-    {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("highscore.txt"));
-            bw.write(pScore+"");
-            bw.close();
-        }
-        catch (Exception e) {
-            System.err.println("Error: "+e.getMessage());
-        }
-    }
-
-    public int loadHighscore() //Lädt highscore aus highscore.txt
-    {
-        int readHighscore = 0;
-        try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream("highscore.txt");
-            BufferedReader r = new BufferedReader(new InputStreamReader(is));
-            String stringHighscore = r.readLine();
-            r.close();
-            if(stringHighscore!="")
-            {
-                readHighscore = Integer.parseInt(stringHighscore);
-            }
-        } catch (Exception e) {
-            System.err.println("Error: "+e.getMessage());
-        }
-        return readHighscore;
-    }
 
     public void switchDebugMode() //Nur auf Konsole | Fürs Testen, de- /aktiviert DebugMode, welcher jeden Schritt auf der Konsole anzeigt
     {
@@ -337,7 +299,7 @@ public class Board extends Actor
             System.out.println();
         }
         System.out.println();
-        System.out.println("Score: "+getScore());
+        System.out.println("Score: "+ScoreObserver.getScore());
         if(!checkForMovableFields())
         {
             System.out.println("Game Over!");
@@ -397,7 +359,7 @@ public class Board extends Actor
         }
     }
 
-    public void move(int pDirection) //Bewegt und verschmilzt die Felder je nach Richtung
+    /* public void move(int pDirection) //Bewegt und verschmilzt die Felder je nach Richtung
     {
         int x;
         int y;
@@ -511,7 +473,7 @@ public class Board extends Actor
             }
         }
        
-    }
+    } */
 
     public boolean checkForMovableFields() //Prüft, ob noch bewegbare Felder existieren
     {

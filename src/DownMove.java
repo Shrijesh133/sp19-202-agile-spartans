@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class DownMove extends Move {
+public class DownMove extends MoveSubject {
 
     public DownMove(Field[][] field) {
         super(field);
