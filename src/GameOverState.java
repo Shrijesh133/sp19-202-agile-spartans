@@ -15,6 +15,7 @@ public class GameOverState extends GameState
     
     @Override
     public void restart() {
+         board.setState("Restarted");
         System.out.println("Game restarted");
     }
     

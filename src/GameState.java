@@ -14,15 +14,19 @@ public class GameState implements IGameState
     }
    
     public void restart() {
+        //default implementation
     }
     
     public void play(){
+         //default implementation
     }
     
     public void pause(){
+         //default implementation
     }
     
     public void resume() {
+         //default implementation
     }
 }
 

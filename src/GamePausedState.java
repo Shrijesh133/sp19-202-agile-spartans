@@ -15,6 +15,7 @@ public class GamePausedState extends GameState implements IGameState
     
     @Override
     public void resume() {
+        board.setState("Resumed");
         System.out.println("Game resumed");
     }
 }
