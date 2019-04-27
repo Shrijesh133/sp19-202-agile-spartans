@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import javafx.util.Pair;
 
 public class UpMove extends MoveSubject {
     
@@ -8,9 +9,9 @@ public class UpMove extends MoveSubject {
     }
 
      @Override
-    boolean moveDirection(Field[][] field,int score) {
+     Pair<Integer,Boolean> moveDirection(Field[][] field,Integer score) {
 
-         boolean anyfieldMoved = false;
+         Boolean anyfieldMoved = false;
         int x;
         int y;
         
@@ -37,7 +38,7 @@ public class UpMove extends MoveSubject {
                         }
                     }
                 }
-    return  anyfieldMoved;
+    return new Pair(score,anyfieldMoved) ;
     }
 
 }
