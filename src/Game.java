@@ -6,6 +6,7 @@ public class Game extends WorldMaster
     private Number number;
     private SoundButton soundButton = new SoundButton();
     private ExitButton exitButton = new ExitButton();
+    private UndoButton undoButton = new UndoButton(true);
     
     public Game() //Erstellt die Welt und startet das Spiel automatisch
     {    
@@ -14,6 +15,7 @@ public class Game extends WorldMaster
         addObject(board,60,540); //Fügt Objekte hinzu
         addObject(soundButton,420,540);
         addObject(exitButton,60,540);
+        addObject(undoButton,390,540); 
         
         Greenfoot.start(); //Startet Spiel automatisch
     }

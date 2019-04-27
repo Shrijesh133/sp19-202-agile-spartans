@@ -1,11 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
+
 public class Board extends Actor
 {
     //Board verwaltet so ziemlich alles, was das Spiel ausmacht (würde man es nur aufs Gameplay reduzieren) | if(getWorld()!=null) ist an vielen Stellen vorhanden, da es sonst in ältereen Greenfoot-Versionen zu Fehlern kommen kann
 
     private Field[][] field; //Field-Array wird deklariert
-
+    
+    private LastState[][] lastState; //For Undo
+    
     private Number number; //Actor-Referenzen werden deklariert/initialisiert
     private Score scoreActor;
     private Highscore highScoreActor;
@@ -29,6 +32,7 @@ public class Board extends Actor
     public Board() //Konstruktor macht die "Spielvorbereitungen"
     {
         field = new Field[4][4];
+        lastState = new LastState[4][4];
         debugMode=false;
         isOver=false;
         highscore=loadHighscore();
@@ -51,7 +55,7 @@ public class Board extends Actor
         }
         if(checkForMovableFields()&&!gameOver) //Bewegt und addiert nur, solange das Spiel läuft
         {
-            if (Greenfoot.isKeyDown("up")&&!up)
+            if (Greenfoot.isKeyDown("m")&&!up)
             {
                 move(1);
                 up=true;
@@ -125,7 +129,7 @@ public class Board extends Actor
         }
     }
 
-    public void updateFieldVisuals() //Updated die visuelle Darstellung des Spiels
+    public void updateFieldVisuals() //Place Number on the exact place     Updated die visuelle Darstellung des Spiels
     {
         getWorld().removeObjects(getWorld().getObjects(Number.class));
         for (int x=0; x< field.length; x++)
@@ -142,7 +146,7 @@ public class Board extends Actor
         }
     }
 
-    public void playPlaceAnimation(int pX, int pY, int pValue) //"Ploppt" ein neues zufälliges Feld auf 
+    public void playPlaceAnimation(int pX, int pY, int pValue) //Animation    "Ploppt" ein neues zufälliges Feld auf 
     {
         if(getWorld()!=null)
         {
@@ -308,7 +312,7 @@ public class Board extends Actor
         }
     }
 
-    public void placeRandomField() //Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
+    public void placeRandomField() // Placed at a random point, a blank field, if present      Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden 
     {
         boolean numberPlaced=false;
         boolean emptyFields=false;
@@ -317,7 +321,7 @@ public class Board extends Actor
         int x=0;
         int y=0;
         int placedValue=2;
-        for (x=0; x< field.length; x++) //Prüft, ob leere Felder vorhanden sind, damit keine Endlosschleife entsteht
+        for (x=0; x< field.length; x++)// Checks whether there is an empty field on the board   Prüft, ob leere Felder vorhanden sind, damit keine Endlosschleife entsteht
         {
             for (y=0; y< field.length; y++)
             {
@@ -327,7 +331,7 @@ public class Board extends Actor
                 }
             }
         }
-        if (emptyFields) //Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
+        if (emptyFields) // If empty field is available then intialize it with 2 or 4    Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
         {
             while (numberPlaced==false)
             {
@@ -344,7 +348,7 @@ public class Board extends Actor
                 }
             }
         }
-        if (numberPlaced) //Spielt die (noch nicht implementierte) separate Animation ab
+        if (numberPlaced) //If number is placed then x and y from 2d-array is sent to playPlaceAnimation      Spielt die (noch nicht implementierte) separate Animation ab
         {
             playPlaceAnimation(xRandom,yRandom,placedValue);
         }
@@ -365,8 +369,29 @@ public class Board extends Actor
     {
         int x;
         int y;
-        boolean anyFieldsMoved=false;
+        boolean anyFieldsMoved=false;   
+        /*
+         * Store Field 2d array in Memento
+         */       
+        
+        for (int i = 0; i < field.length; i++) {
+            System.out.println("i:" + i);
+            for (int j = 0; j < field.length; j++) {
+                System.out.println(field[i][j].getValue());
+            }
+	}
+        
+        
+        for (int i = 0; i < lastState.length; i++) {
+            System.out.println("i:" + i);
+            for (int j = 0; j < lastState.length; j++) {
+                System.out.println("j:" + j );
+                lastState[i][j].setValue(field[i][j].getValue());
+            }
+	}
+           
         setAllMovedFalse();
+        
         switch (pDirection)
         {
             case 1: //Oben
@@ -559,5 +584,17 @@ public class Board extends Actor
     {
         field[pX][pY].setValue(pValue);
         updateFieldVisuals();
+    }
+    
+    public void undo() {
+        //Get Memento here and store it in Field Array
+        //Set Memento to false, so player can undo only once
+        for (int i = 0; i < field.length; i++) {
+            System.out.println("i:" + i);
+            for (int j = 0; j < field.length; j++) {
+		field[i][j].setValue(lastState[i][j].getValue());
+            }
+	}
+	updateFieldVisuals();
     }
 }
