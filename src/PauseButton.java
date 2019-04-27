@@ -23,6 +23,7 @@ public class PauseButton extends Actor
     {
         playButton.scale(40,40);
         pauseImg.scale(40,40);
+        setImage(pauseImg);
         getImage().scale(40,40);
         this.b = board;
         pause = false;
