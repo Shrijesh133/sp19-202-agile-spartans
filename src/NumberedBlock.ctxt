@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=NumberedBlock
+comment1.params=pNumber
+comment1.target=void\ setNumberImage(int)
+comment2.params=pScale
+comment2.target=void\ setScale(int)
+comment3.params=
+comment3.target=java.lang.Object\ clone()
+numComments=4

@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=upkey
+comment1.params=inGame\ board
+comment1.target=upkey(boolean,\ Board)
+comment2.params=
+comment2.target=void\ act()
+numComments=3
