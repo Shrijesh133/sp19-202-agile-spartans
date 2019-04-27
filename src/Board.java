@@ -28,8 +28,8 @@ public class Board extends Actor
     private boolean down=false;
     private boolean left=false;
     private boolean right=false;
-    private boolean gameOver=false;
-    private boolean isOver;
+    //private boolean gameOver=false;
+   
 
     private MoveSubject move ;
 
@@ -49,10 +49,13 @@ public class Board extends Actor
         lastState = new LastState[4][4];
         
         debugMode=false;
+        gameRunningState = new GameRunningState(this);
+        gameNotStartedState = new GameNotStartedState(this);
+        gamePausedState = new GamePausedState(this);
+        gameOverState = new GameOverState(this);
+        currentState = gameNotStartedState;
 
-        isOver=false;
-       
-        //isOver=false;
+        
         highscore=HighscoreObserver.getHighScore();
         
    
@@ -62,14 +65,11 @@ public class Board extends Actor
         if(getWorld()!=null)
         {
             updateFieldVisuals();
-            printScore(false);
+            //printScore(false);
+            printScore(currentState);
         }
         
-        gameRunningState = new GameRunningState(this);
-        gameNotStartedState = new GameNotStartedState(this);
-        gamePausedState = new GamePausedState(this);
-        gameOverState = new GameOverState(this);
-        currentState = gameNotStartedState;
+        
     }
 
     public void act()
@@ -137,7 +137,8 @@ public class Board extends Actor
             placeRandomField(); //Setzt ein neues zufälliges Feld, falls Felder bewegt wurden
         }
             
-            printScore(false);
+           // printScore(false);
+           printScore(currentState);
         } else if(currentState == gamePausedState) {
             
         }
@@ -148,9 +149,10 @@ public class Board extends Actor
             {
                 showGameOverScreen();
               
-               // isOver=true;
+            
             }
-            printScore(true);
+           // printScore(true);
+             printScore(currentState);
         }
         //Vorkehrungen, damit pro Tastendruck nur ein Input genommen wird und nicht jeden Tick
         if (!Greenfoot.isKeyDown("up"))
@@ -195,7 +197,8 @@ public class Board extends Actor
             }
             getWorld().addObject(gameOverOverlay,0,0);
             Greenfoot.delay(10);
-            printScore(true);
+            //printScore(true);
+             printScore(currentState);
             getWorld().addObject(gameOverText,240,60);
             getWorld().addObject(playButton, 240, 420);
         }
@@ -243,7 +246,7 @@ public class Board extends Actor
         return score;
     } */
 
-    public void printScore(boolean gameOver) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
+    /* public void printScore(boolean gameOver) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
     {
         if(getWorld()!=null&&!gameOver) //Spiel läuft
         {
@@ -262,6 +265,43 @@ public class Board extends Actor
             getWorld().addObject(highScoreActor,240,560);
         }
         else if(getWorld()!=null&&gameOver) //Game Over
+        {
+            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(highScoreShadowActor);
+            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
+            getWorld().addObject(scoreShadowActor,242,182);
+            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
+            getWorld().addObject(highScoreShadowActor,242,302);
+
+            getWorld().removeObject(scoreActor);
+            getWorld().removeObject(highScoreActor);
+            scoreActor = new Score(ScoreObserver.getScore(),true);
+            getWorld().addObject(scoreActor,240,180);
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
+            getWorld().addObject(highScoreActor,240,300);
+        }
+    } */
+    
+    
+    public void printScore(IGameState currentState) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
+    {
+        if(getWorld()!=null&&!(currentState == gameOverState)) //Spiel läuft
+        {
+            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(highScoreShadowActor);
+            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
+            getWorld().addObject(scoreShadowActor,242,522);
+            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),false);
+            getWorld().addObject(highScoreShadowActor,242,562);
+
+            getWorld().removeObject(scoreActor);
+            getWorld().removeObject(highScoreActor);
+            scoreActor = new Score(ScoreObserver.getScore(),false);
+            getWorld().addObject(scoreActor,240,520);
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
+            getWorld().addObject(highScoreActor,240,560);
+        }
+        else if(getWorld()!=null&&(currentState == gameOverState)) //Game Over
         {
             getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
             getWorld().removeObject(highScoreShadowActor);
