@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=WorldMaster
-comment1.params=width\ height\ cellSize
-comment1.target=WorldMaster(int,\ int,\ int)
-comment2.params=c
-comment2.target=void\ executeCommand(ICommand)
-numComments=3

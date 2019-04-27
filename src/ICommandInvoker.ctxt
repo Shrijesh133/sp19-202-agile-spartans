@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=ICommandInvoker
-comment1.params=c
-comment1.target=void\ setCommand(ICommand)
-comment2.params=
-comment2.target=void\ executeCommand()
-numComments=3

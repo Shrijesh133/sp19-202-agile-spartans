@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Number
-comment1.params=pNumber\ pScale
-comment1.target=Number(int,\ int)
-comment2.params=pNumber
-comment2.target=void\ setNumberImage(int)
-comment3.params=pScale
-comment3.target=void\ setScale(int)
-numComments=4
