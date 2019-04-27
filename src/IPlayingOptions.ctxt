@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=IPlayingOptions
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ IPlayingOptions\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ Move()
+comment1.text=\r\n\ Move\ in\ any\ of\ the\ four\ directions\r\n
+comment2.params=
+comment2.target=java.lang.String\ upKey()
+comment3.params=
+comment3.target=java.lang.String\ downKey()
+comment4.params=
+comment4.target=java.lang.String\ leftKey()
+comment5.params=
+comment5.target=java.lang.String\ rightKey()
+numComments=6
