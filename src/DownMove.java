@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import javafx.util.Pair;
 
 public class DownMove extends MoveSubject {
 
@@ -8,12 +9,12 @@ public class DownMove extends MoveSubject {
     
     
     @Override
-    boolean moveDirection(Field[][] field, int score) {
+    Pair<Integer,Boolean> moveDirection(Field[][] field, Integer score) {
 
         
         int x;
         int y;
-        boolean anyfieldMoved = false;
+        Boolean anyfieldMoved = false;
 
 
    for (y=(field.length-2); y>=0; y--) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
@@ -38,7 +39,7 @@ public class DownMove extends MoveSubject {
                         }
                     }
                 }
-    return anyfieldMoved  ;
+    return new Pair(score,anyfieldMoved) ;
     }
 
 }
