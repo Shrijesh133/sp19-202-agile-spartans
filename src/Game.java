@@ -4,7 +4,7 @@ public class Game extends WorldMaster
 {
     private Board board = new Board();
     private Number number;
-    private Button soundButton = new Button(new GreenfootImage("soundOff.png"));
+    private SoundButton soundButton = new SoundButton();
     private Button exitButton = new Button(new GreenfootImage("exit.png"));
     
     public Game() //Erstellt die Welt und startet das Spiel automatisch
@@ -13,7 +13,7 @@ public class Game extends WorldMaster
 
         addObject(board,60,540); //Fügt Objekte hinzu
         addObject(soundButton,420,540);
-        soundButton.setCommand(new SoundCommand(soundButton));
+        //soundButton.setCommand(new SoundCommand(soundButton));
 
         addObject(exitButton,60,540);
         exitButton.setCommand(new ExitCommand()); 

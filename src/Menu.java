@@ -6,7 +6,7 @@ public class Menu extends WorldMaster
     private Logo logo = new Logo();
     private Button playButton = new Button(new GreenfootImage("play.png"), 480, 240);
     private Button helpButton = new Button(new GreenfootImage("about.png"));
-    private Button soundButton = new Button(new GreenfootImage("soundOff.png"));
+    private SoundButton soundButton = new SoundButton();
     private MenuBackground menuBackground= new MenuBackground();
     private Highscore highScoreActor;
     private HighscoreShadow highScoreShadowActor;
@@ -21,7 +21,7 @@ public class Menu extends WorldMaster
         playButton.setCommand(new PlayCommand());
         
         addObject(soundButton,420,540);
-        soundButton.setCommand(new SoundCommand(soundButton));
+        //soundButton.setCommand(new SoundCommand(soundButton));
         
         addObject(helpButton,60,540);
         helpButton.setCommand(new HelpCommand());

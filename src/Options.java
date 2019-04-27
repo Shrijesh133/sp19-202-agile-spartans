@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Options extends WorldMaster
 {
-    private Button soundButton = new Button(new GreenfootImage("soundOff.png"));
+    private SoundButton soundButton = new SoundButton();
     private Button exitButton = new Button(new GreenfootImage("exit.png"));
     private HowToPlay howToPlay = new HowToPlay();
     private MusicCopyright musicCopyright = new MusicCopyright();
@@ -12,7 +12,7 @@ public class Options extends WorldMaster
         super(480, 600, 1); //Erstellt die Welt
         
         addObject(soundButton,420,540); //Fügt Objekte hinzu
-        soundButton.setCommand(new SoundCommand(soundButton));
+        //soundButton.setCommand(new SoundCommand(soundButton));
 
         addObject(exitButton,60,540);
         exitButton.setCommand(new ExitCommand()); 
