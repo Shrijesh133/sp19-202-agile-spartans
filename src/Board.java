@@ -138,6 +138,8 @@ public class Board extends Actor
         }
             
             printScore(false);
+        } else if(currentState == gamePausedState) {
+            
         }
         else // Cancel the Game / Game Over
         {
