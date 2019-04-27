@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
+
 public class Board extends Actor
 {
     //Board verwaltet so ziemlich alles, was das Spiel ausmacht (würde man es nur aufs Gameplay reduzieren) | if(getWorld()!=null) ist an vielen Stellen vorhanden, da es sonst in ältereen Greenfoot-Versionen zu Fehlern kommen kann
@@ -13,7 +14,7 @@ public class Board extends Actor
     private HighscoreShadow highScoreShadowActor;
     private GameOverText gameOverText = new GameOverText();
     private GameOverOverlay gameOverOverlay;
-    private PlayButton playButton = new PlayButton(true);
+    private Button playButton = new Button(new GreenfootImage("play.png"), 240, 120);
 
     private int highscore=0; //Einfache Variabeln werden deklariert/initialisiert
     private int score=0;
@@ -122,6 +123,7 @@ public class Board extends Actor
             printScore(true);
             getWorld().addObject(gameOverText,240,60);
             getWorld().addObject(playButton, 240, 420);
+            playButton.setCommand(new PlayCommand());
         }
     }
 
