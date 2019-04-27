@@ -28,8 +28,7 @@ public class Board extends Actor
     private boolean down=false;
     private boolean left=false;
     private boolean right=false;
-    //private boolean gameOver=false;
-   
+    
 
     private MoveSubject move ;
 
@@ -65,7 +64,6 @@ public class Board extends Actor
         if(getWorld()!=null)
         {
             updateFieldVisuals();
-            //printScore(false);
             printScore(currentState);
         }
         
@@ -108,36 +106,33 @@ public class Board extends Actor
                 anyfieldMoved  = move.move();
                 down=true;
             }
+            
             if (Greenfoot.isKeyDown("left")&&!left)
             {
 
                 currentState.play();
                 storeState();             
-
-               move = new LeftMove(field);
-               anyfieldMoved  = move.move();
-
+                move = new LeftMove(field);
+                anyfieldMoved  = move.move();
                 left=true;
             }
+            
             if (Greenfoot.isKeyDown("right")&&!right)
             {
 
                 currentState.play();
                 storeState();               
-
                 move = new RightMove(field);
-               anyfieldMoved  = move.move();
-
+                anyfieldMoved  = move.move();
                 right=true;
             }
             
-         if (anyfieldMoved)
-        {
+            if (anyfieldMoved)
+          {
             updateFieldVisuals();
-            placeRandomField(); //Setzt ein neues zufälliges Feld, falls Felder bewegt wurden
-        }
+            placeRandomField(); //Sets a new random field if fields have been moved
+          }
             
-           // printScore(false);
            printScore(currentState);
         } else if(currentState == gamePausedState) {
             
@@ -154,7 +149,7 @@ public class Board extends Actor
            // printScore(true);
              printScore(currentState);
         }
-        //Vorkehrungen, damit pro Tastendruck nur ein Input genommen wird und nicht jeden Tick
+        //Precautions, so that only one input is taken per key press and not every tick
         if (!Greenfoot.isKeyDown("up"))
         {
             up=false;
@@ -174,18 +169,20 @@ public class Board extends Actor
     }
     
     public void setState(String gameState) {
-        if(gameState == "Playing" || gameState == "Resumed"){
+        
+    if(gameState == "Playing" || gameState == "Resumed"){
         currentState = gameRunningState;
     }  else if(gameState == "Restarted") {
         currentState = gameNotStartedState;
     } else if(gameState == "Paused") {
         currentState = gamePausedState;
     }
+    
     }
 
-    public void showGameOverScreen() //Zeigt das Game Over Overlay an
+    public void showGameOverScreen() //Displays the Game Over Overlay
     {
-       // gameOver=true;
+      
         if(getWorld()!=null)
         {
             for (int i=0; i<127;i=i+2)
@@ -197,14 +194,13 @@ public class Board extends Actor
             }
             getWorld().addObject(gameOverOverlay,0,0);
             Greenfoot.delay(10);
-            //printScore(true);
-             printScore(currentState);
+            printScore(currentState);
             getWorld().addObject(gameOverText,240,60);
             getWorld().addObject(playButton, 240, 420);
         }
     }
 
-    public void updateFieldVisuals() //Updated die visuelle Darstellung des Spiels
+    public void updateFieldVisuals() //Updated the visual representation of the game
     {
         getWorld().removeObjects(getWorld().getObjects(Number.class));
         for (int x=0; x< field.length; x++)
@@ -221,7 +217,7 @@ public class Board extends Actor
         }
     }
 
-    public void playPlaceAnimation(int pX, int pY, int pValue) //"Ploppt" ein neues zufälliges Feld auf 
+    public void playPlaceAnimation(int pX, int pY, int pValue) //"Pops" a new random field 
     {
         if(getWorld()!=null)
         {
@@ -236,58 +232,14 @@ public class Board extends Actor
         }
     }
 
-    /*public void addScore(int pAdd) //Addiert Score um pAdd
-    {
-       score=score+pAdd;
-    } 
-
-    public int getScore() //Getter wegen private
-    {
-        return score;
-    } */
-
-    /* public void printScore(boolean gameOver) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
-    {
-        if(getWorld()!=null&&!gameOver) //Spiel läuft
-        {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
-            getWorld().removeObject(highScoreShadowActor);
-            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
-            getWorld().addObject(scoreShadowActor,242,522);
-            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),false);
-            getWorld().addObject(highScoreShadowActor,242,562);
-
-            getWorld().removeObject(scoreActor);
-            getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(ScoreObserver.getScore(),false);
-            getWorld().addObject(scoreActor,240,520);
-            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
-            getWorld().addObject(highScoreActor,240,560);
-        }
-        else if(getWorld()!=null&&gameOver) //Game Over
-        {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
-            getWorld().removeObject(highScoreShadowActor);
-            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
-            getWorld().addObject(scoreShadowActor,242,182);
-            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
-            getWorld().addObject(highScoreShadowActor,242,302);
-
-            getWorld().removeObject(scoreActor);
-            getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(ScoreObserver.getScore(),true);
-            getWorld().addObject(scoreActor,240,180);
-            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
-            getWorld().addObject(highScoreActor,240,300);
-        }
-    } */
+   
     
+    public void printScore(IGameState currentState) //Returns the score / highscore in the game | has two display options: Game Over and in-game
     
-    public void printScore(IGameState currentState) //Gibt den Score/Highscore im Spiel aus | hat zwei Darstellungsmöglichkeiten: Game Over und im Spiel
     {
-        if(getWorld()!=null&&!(currentState == gameOverState)) //Spiel läuft
+        if(getWorld()!=null&&!(currentState == gameOverState)) //Game is running
         {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(scoreShadowActor); //Shows shadows (puts the strings in black underneath and offset to make the scores better match the theme of the game)
             getWorld().removeObject(highScoreShadowActor);
             scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
             getWorld().addObject(scoreShadowActor,242,522);
@@ -303,7 +255,7 @@ public class Board extends Actor
         }
         else if(getWorld()!=null&&(currentState == gameOverState)) //Game Over
         {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(scoreShadowActor); //Shows shadows (puts the strings in black underneath and offset to make the scores better match the theme of the game)
             getWorld().removeObject(highScoreShadowActor);
             scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
             getWorld().addObject(scoreShadowActor,242,182);
@@ -320,7 +272,7 @@ public class Board extends Actor
     }
 
 
-    public void switchDebugMode() //Nur auf Konsole | Fürs Testen, de- /aktiviert DebugMode, welcher jeden Schritt auf der Konsole anzeigt
+    public void switchDebugMode() //Only on console | For testing, enable / disable DebugMode, which displays each step on the console
     {
         if (debugMode)
         {
@@ -332,7 +284,7 @@ public class Board extends Actor
         }
     }
 
-    public void setInitialBoardForTesting(int pNumberOfFields) //Erstellt ein Board mit "pNumberOfFields" Feldern
+    public void setInitialBoardForTesting(int pNumberOfFields) //Creates a board with "pNumberOfFields" fields
     {
         for (int i=0; i<pNumberOfFields; i++)
         {
@@ -340,7 +292,7 @@ public class Board extends Actor
         }
     }
 
-    public void fillField() //Füllt das Array mit Field-Objekten
+    public void fillField() //Fills the array with Field objects
     {
         int x;
         int y;
@@ -354,7 +306,7 @@ public class Board extends Actor
         }
     }
 
-    public void printField(boolean dontClearConsole) //Zeigt das "Spielfeld" auf der Konsole (DebugMode zeigt jeden einzelnen Schritt)
+    public void printField(boolean dontClearConsole) //Shows the "playing field" on the console (DebugMode shows every single step)
     {
         if (dontClearConsole)
         {
@@ -388,7 +340,7 @@ public class Board extends Actor
         }
     }
 
-    public void placeRandomField() //Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
+    public void placeRandomField() //Place a field in a random empty space, if any
     {
         boolean numberPlaced=false;
         boolean emptyFields=false;
@@ -397,7 +349,7 @@ public class Board extends Actor
         int x=0;
         int y=0;
         int placedValue=2;
-        for (x=0; x< field.length; x++) //Prüft, ob leere Felder vorhanden sind, damit keine Endlosschleife entsteht
+        for (x=0; x< field.length; x++) //Checks if there are empty fields, so that no endless loop is created
         {
             for (y=0; y< field.length; y++)
             {
@@ -407,7 +359,7 @@ public class Board extends Actor
                 }
             }
         }
-        if (emptyFields) //Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
+        if (emptyFields) //Place a field in a random empty space, if any
         {
             while (numberPlaced==false)
             {
@@ -424,13 +376,13 @@ public class Board extends Actor
                 }
             }
         }
-        if (numberPlaced) //Spielt die (noch nicht implementierte) separate Animation ab
+        if (numberPlaced) //Plays the (not yet implemented) separate animation
         {
             playPlaceAnimation(xRandom,yRandom,placedValue);
         }
     }
 
-    public void setAllMovedFalse() //Setzt moved aller Felder auf false | vorbereitung für "neuen move"
+    public void setAllMovedFalse() //Sets moved all fields to false | preparation for "new move"
     {
         for (int x=0; x< field.length; x++)
         {
@@ -443,7 +395,7 @@ public class Board extends Actor
 
     
 
-    public boolean checkForMovableFields() //Prüft, ob noch bewegbare Felder existieren
+    public boolean checkForMovableFields() //Check if there are still moving fields
     {
         int y;
         int x;
@@ -517,7 +469,7 @@ public class Board extends Actor
         return anyFieldsMovable;
     }
 
-    public void placeSpecificField(int pX, int pY,int  pValue) //Plaziert ein Feld mit einem bestimmten Wert an einer bestimmten Stelle (fürs Testen)
+    public void placeSpecificField(int pX, int pY,int  pValue) //Places a field with a specific value at a specific location (for testing)
     {
         field[pX][pY].setValue(pValue);
         updateFieldVisuals();
