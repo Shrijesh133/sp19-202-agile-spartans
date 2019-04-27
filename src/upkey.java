@@ -22,7 +22,10 @@ public class upkey extends Actor
             key = true;//Greenfoot.setWorld(new Game());
             board = (Board)getWorld().getObjects(Board.class).get(0);
             
-            board.notifyact();
+
+            board.notifyAll();
+
+           // board.notifyact();
         }
     }     
 }

@@ -5,6 +5,7 @@ public class Board extends Actor
 {
     // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
     private Field[][] field; // Field array is declared
+    private LastState[][] lastState; //For Undo
 
     private Number number; //Actor references are declared / initialized
     private Score scoreActor;
@@ -45,6 +46,8 @@ public class Board extends Actor
     {
         
         field = new Field[4][4];
+        lastState = new LastState[4][4];
+        
         debugMode=false;
 
         isOver=false;
@@ -84,11 +87,13 @@ public class Board extends Actor
         }
         if(checkForMovableFields()&&!(currentState == gameOverState || currentState == gamePausedState)) // Move and add only while the game is running
         {
+            
             setAllMovedFalse();
             if (Greenfoot.isKeyDown("up")&&!up)
             {
 
                 currentState.play();
+                storeState();
                 move = new UpMove(field);
                 anyfieldMoved  = move.move();
                 up=true;
@@ -98,6 +103,7 @@ public class Board extends Actor
             {
 
                 currentState.play();
+                storeState();                
                 move = new DownMove(field);
                 anyfieldMoved  = move.move();
                 down=true;
@@ -106,7 +112,7 @@ public class Board extends Actor
             {
 
                 currentState.play();
-               
+                storeState();             
 
                move = new LeftMove(field);
                anyfieldMoved  = move.move();
@@ -117,7 +123,7 @@ public class Board extends Actor
             {
 
                 currentState.play();
-               
+                storeState();               
 
                 move = new RightMove(field);
                anyfieldMoved  = move.move();
@@ -301,6 +307,7 @@ public class Board extends Actor
             for (y=0; y< field.length; y++)
             {
                 field[x][y]= new Field();
+                lastState[x][y] = new LastState();
             }
         }
     }
@@ -474,5 +481,35 @@ public class Board extends Actor
         updateFieldVisuals();
     }
    
-	
+    public void storeState() {
+        for (int i = 0; i < field.length; i++) {
+                System.out.println("i:" + i);
+                for (int j = 0; j < field.length; j++) {
+                    System.out.println(field[i][j].getValue());
+                }
+            }
+            for (int i = 0; i < field.length; i++) {
+                System.out.println("i:" + i);
+                for (int j = 0; j < field.length; j++) {
+                    System.out.println("j:" +  field[i][j].getValue());
+                    if(field[i][j].getValue() == 0){
+                        lastState[i][j].setValue(0);
+                    } else {
+                        lastState[i][j].setValue(field[i][j].getValue());
+                    } 
+                }
+            }
+     }
+        
+    public void undo() {
+        //Get Memento here and store it in Field Array
+        //Set Memento to false, so player can undo only once
+        for (int i = 0; i < field.length; i++) {
+            System.out.println("i:" + i);
+            for (int j = 0; j < field.length; j++) {
+		field[i][j].setValue(lastState[i][j].getValue());
+            }
+	}
+	updateFieldVisuals();
+    }
 }
