@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=SoundCommand
+comment1.params=receiver
+comment1.target=SoundCommand(Button)
+comment2.params=
+comment2.target=boolean\ execute()
+numComments=3

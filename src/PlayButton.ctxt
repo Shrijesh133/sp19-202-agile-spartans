@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=PlayButton
+comment1.params=inGame
+comment1.target=PlayButton(boolean)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=c
+comment3.target=void\ setCommand(ICommand)
+comment4.params=
+comment4.target=void\ executeCommand()
+numComments=5
