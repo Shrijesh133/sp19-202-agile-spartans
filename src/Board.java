@@ -55,7 +55,7 @@ public class Board extends Actor
         }
         if(checkForMovableFields()&&!gameOver) //Bewegt und addiert nur, solange das Spiel läuft
         {
-            if (Greenfoot.isKeyDown("m")&&!up)
+            if (Greenfoot.isKeyDown("up")&&!up)
             {
                 move(1);
                 up=true;
@@ -274,6 +274,7 @@ public class Board extends Actor
             for (y=0; y< field.length; y++)
             {
                 field[x][y]= new Field();
+                lastState[x][y] = new LastState();
             }
         }
     }
@@ -385,8 +386,12 @@ public class Board extends Actor
         for (int i = 0; i < lastState.length; i++) {
             System.out.println("i:" + i);
             for (int j = 0; j < lastState.length; j++) {
-                System.out.println("j:" + j );
-                lastState[i][j].setValue(field[i][j].getValue());
+                System.out.println("j:" +  field[i][j].getValue());
+                if(field[i][j].getValue() == 0){
+                    lastState[i][j].setValue(0);
+                } else {
+                    lastState[i][j].setValue(field[i][j].getValue());
+                } 
             }
 	}
            

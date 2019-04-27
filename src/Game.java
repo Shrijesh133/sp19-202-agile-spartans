@@ -15,7 +15,7 @@ public class Game extends WorldMaster
         addObject(board,60,540); //Fügt Objekte hinzu
         addObject(soundButton,420,540);
         addObject(exitButton,60,540);
-        addObject(undoButton,390,540); 
+        addObject(undoButton,370,540); 
         
         Greenfoot.start(); //Startet Spiel automatisch
     }
