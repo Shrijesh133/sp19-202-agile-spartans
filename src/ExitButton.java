@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class ExitButton extends Actor
+public class ExitButton extends Actor implements ICommandInvoker
 {
+    ICommand command;
+    
     public ExitButton()
     {
         getImage().scale(40,40);
@@ -11,7 +13,16 @@ public class ExitButton extends Actor
     {
        if (Greenfoot.mouseClicked(this))
         {
-            Greenfoot.setWorld(new Menu());
+            executeCommand();
         }
     }   
+    public void setCommand(ICommand c) {
+        command = c;
+    }
+    
+    public void executeCommand() {
+        if (command != null) {
+            command.execute();
+        }
+    }
 }
