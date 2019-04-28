@@ -32,8 +32,7 @@ public class Board extends Actor
     private boolean down=false;
     private boolean left=false;
     private boolean right=false;
-    private boolean gameOver=false;
-    private boolean isOver;
+    
 
     private MoveSubject move ;
 
@@ -107,6 +106,7 @@ public class Board extends Actor
                 anyfieldMoved  = move.move();
                 down=true;
             }
+            
             if (Greenfoot.isKeyDown("left")&&!left)
             {
 
@@ -116,6 +116,7 @@ public class Board extends Actor
                 anyfieldMoved  = move.move();
                 left=true;
             }
+            
             if (Greenfoot.isKeyDown("right")&&!right)
             {
 
@@ -132,7 +133,6 @@ public class Board extends Actor
                 placeRandomField(); //Place any random value to the field array after every move
             }
             
-            printScore(false);
         }
         else // Cancel the Game / Game Over
         {
@@ -142,7 +142,8 @@ public class Board extends Actor
                 showGameOverScreen();
                 // isOver=true;
             }
-            printScore(true);
+           // printScore(true);
+             printScore(currentState);
         }
         //Measures to ensure that only one input is taken per keystroke rather than each tick
         if (!Greenfoot.isKeyDown("up"))
@@ -194,7 +195,7 @@ public class Board extends Actor
             }
             getWorld().addObject(gameOverOverlay,0,0);
             Greenfoot.delay(10);
-            printScore(true);
+            printScore(currentState);
             getWorld().addObject(gameOverText,240,60);
             getWorld().addObject(playButton, 240, 420);
         }
@@ -257,9 +258,9 @@ public class Board extends Actor
      */
     public void printScore(boolean gameOver)
     {
-        if(getWorld()!=null&&!gameOver) //Spiel läuft
+        if(getWorld()!=null&&!(currentState == gameOverState)) //Game is running
         {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(scoreShadowActor); //Shows shadows (puts the strings in black underneath and offset to make the scores better match the theme of the game)
             getWorld().removeObject(highScoreShadowActor);
             scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
             getWorld().addObject(scoreShadowActor,242,522);
@@ -273,9 +274,9 @@ public class Board extends Actor
             highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
             getWorld().addObject(highScoreActor,240,560);
         }
-        else if(getWorld()!=null&&gameOver) //Game Over
+        else if(getWorld()!=null&&(currentState == gameOverState)) //Game Over
         {
-            getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
+            getWorld().removeObject(scoreShadowActor); //Shows shadows (puts the strings in black underneath and offset to make the scores better match the theme of the game)
             getWorld().removeObject(highScoreShadowActor);
             scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
             getWorld().addObject(scoreShadowActor,242,182);
@@ -385,7 +386,7 @@ public class Board extends Actor
         int x=0;
         int y=0;
         int placedValue=2;
-        for (x=0; x< field.length; x++) //Prüft, ob leere Felder vorhanden sind, damit keine Endlosschleife entsteht
+        for (x=0; x< field.length; x++) //Checks if there are empty fields, so that no endless loop is created
         {
             for (y=0; y< field.length; y++)
             {
@@ -395,7 +396,7 @@ public class Board extends Actor
                 }
             }
         }
-        if (emptyFields) //Plaziert an einer zufälligen leeren Stelle ein Feld, falls vorhanden
+        if (emptyFields) //Place a field in a random empty space, if any
         {
             while (numberPlaced==false)
             {
@@ -412,7 +413,7 @@ public class Board extends Actor
                 }
             }
         }
-        if (numberPlaced) //Spielt die (noch nicht implementierte) separate Animation ab
+        if (numberPlaced) //Plays the (not yet implemented) separate animation
         {
             playPlaceAnimation(xRandom,yRandom,placedValue);
         }
