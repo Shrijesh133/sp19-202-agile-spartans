@@ -1,45 +1,55 @@
 #BlueJ class context
 comment0.target=Board
+comment0.text=\r\n\ Board\ class\:\ actor\ where\ most\ of\ the\ actions\ of\ the\ game\ is\ performed\r\n
 comment1.params=
 comment1.target=Board()
+comment1.text=\r\n\ Constructor\ of\ Board\r\n
 comment10.params=
 comment10.target=void\ fillField()
+comment10.text=\r\n\ Initialize\ the\ Field\ Array\ and\ LastState\ Array\r\n
 comment11.params=dontClearConsole
 comment11.target=void\ printField(boolean)
+comment11.text=\r\n\ Priniting\ out\ field\ array\ for\ debugging\r\n\ @param\ boolean\ dontClearConsole\ Console\ should\ be\ cleared\ or\ not\r\n
 comment12.params=
 comment12.target=void\ placeRandomField()
+comment12.text=\r\n\ Placing\ random\ value\ (2\ or\ 4)\ to\ one\ of\ the\ element\ of\ Field's\ 2D-array\r\n
 comment13.params=
 comment13.target=void\ setAllMovedFalse()
+comment13.text=\r\n\ Resetting\ each\ field's\ value\ to\ false\ before\ moving\r\n
 comment14.params=
 comment14.target=boolean\ checkForMovableFields()
+comment14.text=\r\n\ Check\ Whether\ there\ is\ movable\ field\ or\ not\r\n\ @return\ boolean\ movable\ field\ or\ not\r\n
 comment15.params=pX\ pY\ pValue
 comment15.target=void\ placeSpecificField(int,\ int,\ int)
-<<<<<<< HEAD
+comment15.text=\r\n\ Place\ value\ to\ specified\ element\ of\ Field's\ 2D-Array\r\n\ @param\ int\ pX\ row\ of\ the\ field's\ 2D-array\r\n\ @param\ int\ pY\ column\ of\ the\ field's\ 2D-array\r\n\ @param\ int\ pValue\ value\ to\ be\ assigned\ at\ [x][y]\ element\ of\ the\ field's\ 2D-array\r\n
 comment16.params=
 comment16.target=void\ storeState()
+comment16.text=\r\n\ Storing\ the\ current\ state\ before\ moving\ to\ any\ side\r\n
 comment17.params=
 comment17.target=void\ undo()
-=======
->>>>>>> master
+comment17.text=\r\n\ Get\ Previous\ State\ of\ the\ Field's\ Array\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ act\ method\ of\ greenfoot\r\n
 comment3.params=gameState
 comment3.target=void\ setState(java.lang.String)
+comment3.text=\r\n\ Setting\ the\ current\ state\ of\ the\ Game\r\n\ @param\ String\ gameState\ state\ to\ be\ set\ for\ the\ game\r\n
 comment4.params=
 comment4.target=void\ showGameOverScreen()
+comment4.text=\r\n\ Showing\ GameOver\ Overlay\ on\ Gameover\r\n
 comment5.params=
 comment5.target=void\ updateFieldVisuals()
+comment5.text=\r\n\ Show\ Numbers'\ Image\ according\ to\ Field\ 2D-Array\r\n
 comment6.params=pX\ pY\ pValue
 comment6.target=void\ playPlaceAnimation(int,\ int,\ int)
+comment6.text=\r\n\ Show\ Animation\ or\ Transition\ on\ any\ move\ (left,\ right,\ up,\ down)\r\n\ @param\ int\ pX\ row\ of\ the\ field's\ 2D-array\r\n\ @param\ int\ pY\ column\ of\ the\ field's\ 2D-array\r\n\ @param\ int\ pValue\ value\ to\ be\ assigned\ at\ [x][y]\ element\ of\ the\ field's\ 2D-array\r\n
 comment7.params=gameOver
 comment7.target=void\ printScore(boolean)
-comment7.text=public\ void\ addScore(int\ pAdd)\ //Addiert\ Score\ um\ pAdd\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ score\=score+pAdd;\r\n\ \ \ \ }\ \r\n\r\n\ \ \ \ public\ int\ getScore()\ //Getter\ wegen\ private\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ return\ score;\r\n}
+comment7.text=\r\n\ Printing\ current\ score\ and\ highscore\r\n\ @param\ boolean\ gameOver\ whether\ gameOver\ state\ or\ not\ \r\n
 comment8.params=
 comment8.target=void\ switchDebugMode()
+comment8.text=\r\n\ Switching\ Debugging\ mode\r\n
 comment9.params=pNumberOfFields
 comment9.target=void\ setInitialBoardForTesting(int)
-<<<<<<< HEAD
+comment9.text=\r\n\ Set\ Initial\ Board\ for\ Testing\ by\ setting\ random\ value\ (2\ or\ 4)\ to\ number\ of\ fields\r\n\ @param\ int\ pNumberOfFields\ Number\ of\ Fields\ to\ be\ initialized\r\n
 numComments=18
-=======
-numComments=16
->>>>>>> master
