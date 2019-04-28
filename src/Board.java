@@ -32,7 +32,7 @@ public class Board extends Actor
     private boolean down=false;
     private boolean left=false;
     private boolean right=false;
-    
+    private boolean isOver;
 
     private MoveSubject move ;
 
@@ -142,8 +142,8 @@ public class Board extends Actor
                 showGameOverScreen();
                 // isOver=true;
             }
-           // printScore(true);
-             printScore(currentState);
+            // printScore(true);
+            printScore(currentState);
         }
         //Measures to ensure that only one input is taken per keystroke rather than each tick
         if (!Greenfoot.isKeyDown("up"))

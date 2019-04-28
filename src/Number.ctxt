@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=Number
+comment0.text=\r\n\ Number\ Actor\:\ Setting\ image\ according\ to\ be\ number\ on\ the\ field\r\n
 comment1.params=pNumber\ pScale
 comment1.target=Number(int,\ int)
+comment1.text=\r\n\ Constructor\r\n\ @param\ int\ pNumber\ Value\ of\ the\ number\r\n\ @param\ int\ pScale\ Size\ of\ the\ Number\ Image\r\n
 comment2.params=pNumber
 comment2.target=void\ setNumberImage(int)
+comment2.text=\r\n\ set\ Image\ of\ the\ number\ according\ to\ the\ value\ of\ the\ field\r\n\ @param\ int\ pNumber\ value\ \r\n
 comment3.params=pScale
 comment3.target=void\ setScale(int)
+comment3.text=\r\n\ set\ image\ with\ the\ specific\ size\r\n\ @param\ int\ pScale\ Size\ of\ the\ Number\ Image\r\n
 numComments=4

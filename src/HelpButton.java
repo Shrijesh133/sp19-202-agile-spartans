@@ -1,13 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/*
+ * HelpButton Actor Button when clicked, navigate to help(options) screen
+ */
 public class HelpButton extends Actor
 {
-    public HelpButton() //Setzt die Größe kleiner im Spiel
+    /*
+     * Constructor
+     */
+    public HelpButton() 
     {
         getImage().scale(40,40);
     }
 
-    public void act()  //Funktioniert als Button und öffnet die Optionen/Credits
+    /*
+     * act method of the gereenfoot: navigate to options screen on click
+     */
+    public void act()
     {
         if (Greenfoot.mouseClicked(this))
         {

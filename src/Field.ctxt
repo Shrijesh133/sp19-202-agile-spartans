@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=Field
+comment0.text=\r\n\ Field\ Actor\:\ which\ specify\ which\ field\ has\ which\ value\r\n
 comment1.params=
 comment1.target=int\ getValue()
+comment1.text=\r\n\ Get\ the\ value\ of\ the\ field\r\n\ @return\ int\ value\ of\ the\ field\r\n
 comment2.params=pValue
 comment2.target=void\ setValue(int)
+comment2.text=\r\n\ Set\ the\ value\ of\ the\ field\r\n\ @param\ int\ pValue\ value\ to\ be\ set\ for\ the\ field\r\n
 comment3.params=
 comment3.target=boolean\ getMoved()
+comment3.text=\r\n\ Check\ whether\ the\ field\ is\ moved\ or\ not\r\n\ @return\ boolean\ whether\ moved\ or\ not\r\n
 comment4.params=pMoved
 comment4.target=void\ setMoved(boolean)
+comment4.text=\r\n\ Set\ moved\ true\ or\ false\ to\ field\r\n\ @param\ boolean\ pMoved\ moved\ or\ not\r\n
 comment5.params=
 comment5.target=void\ setRandomInitialValue()
+comment5.text=\r\n\ Set\ random\ value\ from\ 2\ or\ 4\ to\ the\ field\r\n
 numComments=6
