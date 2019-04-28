@@ -169,14 +169,29 @@ public class Board extends Actor
     }
     
     public void setState(String gameState) {
+        switch(gameState) {
+            case "Playing":
+            case "Resumed":
+            currentState = gameRunningState;
+            break;
+            case "Restarted":
+            currentState = gameNotStartedState;
+            break;
+            case "Paused":
+            currentState = gamePausedState;
+            break;
+            default :
+            break;
+             
+        }
         
-    if(gameState == "Playing" || gameState == "Resumed"){
+    /*if(gameState == "Playing" || gameState == "Resumed"){
         currentState = gameRunningState;
     }  else if(gameState == "Restarted") {
         currentState = gameNotStartedState;
     } else if(gameState == "Paused") {
         currentState = gamePausedState;
-    }
+    } */
     
     }
 
