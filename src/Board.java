@@ -6,7 +6,7 @@ public class Board extends Actor
     // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
     private Field[][] field; // Field array is declared
 
-    private Number number; //Actor references are declared / initialized
+    private NumberedBlock number; //Actor references are declared / initialized
     private Score scoreActor;
     private Highscore highScoreActor;
     private ScoreShadow scoreShadowActor;
@@ -193,6 +193,8 @@ public class Board extends Actor
         }
     }
 
+
+	
     public void updateFieldVisuals() //Updated die visuelle Darstellung des Spiels
     {
         getWorld().removeObjects(getWorld().getObjects(Number.class));
@@ -203,7 +205,53 @@ public class Board extends Actor
                 int currentValue = field[x][y].getValue();
                 if (currentValue>0)
                 {
-                    number = new Number(currentValue,120);
+                    //number = new Number(currentValue,120);
+					switch(currentValue)
+					{
+						case: 2
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
+						break;
+						case: 4
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
+						break;
+						case: 8
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
+						break;
+						case: 16
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
+						break;
+						case: 32
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
+						break;
+						case: 64
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
+						break;
+						case: 128
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock128);
+						break;
+						case: 256
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
+						break;
+						case: 512
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
+						break;
+						case: 1024
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
+						break;
+						case: 2048
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+						break;
+						case: 2049
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+						break;
+						case: 2050
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+						break;
+						case: 2051
+						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+						break;
+						
+					}
                     getWorld().addObject(number,x*120+60,y*120+60);
                 }
             }
