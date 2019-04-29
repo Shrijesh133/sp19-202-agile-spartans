@@ -169,13 +169,23 @@ public class Board extends Actor
      * @param String gameState state to be set for the game
      */
     public void setState(String gameState) {
-        if(gameState == "Playing" || gameState == "Resumed"){
+
+        switch(gameState) {
+            case "Playing":
+            case "Resumed":
             currentState = gameRunningState;
-        }  else if(gameState == "Restarted") {
+            break;
+            case "Restarted":
             currentState = gameNotStartedState;
-        } else if(gameState == "Paused") {
+            break;
+            case "Paused":
             currentState = gamePausedState;
+            break;
+            default :
+            break;
+             
         }
+    
     }
 
     /*
