@@ -25,7 +25,6 @@ public class upkey extends Actor
 
             board.notifyAll();
 
-           // board.notifyact();
         }
     }     
 }
