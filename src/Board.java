@@ -197,7 +197,7 @@ public class Board extends Actor
 	
     public void updateFieldVisuals() //Updated die visuelle Darstellung des Spiels
     {
-        getWorld().removeObjects(getWorld().getObjects(Number.class));
+        getWorld().removeObjects(getWorld().getObjects(NumberedBlock.class));
         for (int x=0; x< field.length; x++)
         {
             for (int y=0; y< field.length; y++)
@@ -205,54 +205,51 @@ public class Board extends Actor
                 int currentValue = field[x][y].getValue();
                 if (currentValue>0)
                 {
-                    //number = new Number(currentValue,120);
-					switch(currentValue)
-					{
-						case: 2
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
-						break;
-						case: 4
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
-						break;
-						case: 8
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
-						break;
-						case: 16
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
-						break;
-						case: 32
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
-						break;
-						case: 64
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
-						break;
-						case: 128
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock128);
-						break;
-						case: 256
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
-						break;
-						case: 512
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
-						break;
-						case: 1024
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
-						break;
-						case: 2048
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-						break;
-						case: 2049
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-						break;
-						case: 2050
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-						break;
-						case: 2051
-						number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-						break;
-						
-					}
-                    getWorld().addObject(number,x*120+60,y*120+60);
+                     //number = new Number(currentValue,120);
+        		switch(currentValue)
+        		{
+    			case 2:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
+    			break;
+    			case 4: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
+    			break;
+    			case 8: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
+    			break;
+    			case 16: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
+    			break;
+    			case 32:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
+    			break;
+    			case 64: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
+    			break;
+    			case 128: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock128");
+    			break;
+    			case 256: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
+    			break;
+    			case 512: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
+    			break;
+    			case 1024: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
+    			break;
+    			case 2048: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+    			break;
+    			case 4096:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4096");
+    			break;
+    			case 8192: 
+        	        number = NumberedBlockStore.getNumberedBlock("NumberedBlock8192");
+                        break;
+        				 					
+    		    }
+                    getWorld().addObject(number,x*120+60,y*120+60); 
                 }
             }
         }
@@ -264,12 +261,12 @@ public class Board extends Actor
         {
             for (int i=1; i<120;i=i+16)
             {
-                number = new Number(pValue,i);
-                getWorld().addObject(number,pX*120+60,pY*120+60);
-                Greenfoot.delay(1);
-                getWorld().removeObject(number);
+                //number = new Number(pValue,i);
+                //getWorld().addObject(number,pX*120+60,pY*120+60);
+                //Greenfoot.delay(1);
+                //getWorld().removeObject(number);
             }
-            updateFieldVisuals();
+           // updateFieldVisuals();
         }
     }
 
