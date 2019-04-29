@@ -11,7 +11,7 @@ public class Board extends Actor
     private Field[][] field; // Field array is declared: Current Positions of the numbers
     private LastState[][] lastState; //Last state is declared: Previous Posotions of the numbers
 
-    private NumberedBlock number; //Actor references are declared / initialized
+    private Number number; //Actor references are declared / initialized
     private Score scoreActor; //Score is declared for maintaining in current score
     private Highscore highScoreActor; //Highscore is declared for maintaining in highscore score of the game
     private ScoreShadow scoreShadowActor; //Shadow under the score
@@ -32,7 +32,7 @@ public class Board extends Actor
     private boolean down=false;
     private boolean left=false;
     private boolean right=false;
-    
+    private boolean isOver;
 
     private MoveSubject move ;
 
@@ -142,8 +142,8 @@ public class Board extends Actor
                 showGameOverScreen();
                 // isOver=true;
             }
-           // printScore(true);
-             printScore(currentState);
+            // printScore(true);
+            printScore(currentState);
         }
         //Measures to ensure that only one input is taken per keystroke rather than each tick
         if (!Greenfoot.isKeyDown("up"))
@@ -206,7 +206,7 @@ public class Board extends Actor
      */
     public void updateFieldVisuals()
     {
-        getWorld().removeObjects(getWorld().getObjects(NumberedBlock.class));
+        getWorld().removeObjects(getWorld().getObjects(Number.class));
         for (int x=0; x< field.length; x++)
         {
             for (int y=0; y< field.length; y++)
@@ -214,51 +214,7 @@ public class Board extends Actor
                 int currentValue = field[x][y].getValue();
                 if (currentValue>0)
                 {
-                    
-			switch(currentValue)
-        		{
-    			case 2:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
-    			break;
-    			case 4: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
-    			break;
-    			case 8: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
-    			break;
-    			case 16: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
-    			break;
-    			case 32:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
-    			break;
-    			case 64: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
-    			break;
-    			case 128: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock128");
-    			break;
-    			case 256: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
-    			break;
-    			case 512: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
-    			break;
-    			case 1024: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
-    			break;
-    			case 2048: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-    			break;
-    			case 4096:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4096");
-    			break;
-    			case 8192: 
-        	        number = NumberedBlockStore.getNumberedBlock("NumberedBlock8192");
-                        break;
-        				 					
-    		    }
-
+                    number = new Number(currentValue,120);
                     getWorld().addObject(number,x*120+60,y*120+60);
                 }
             }
