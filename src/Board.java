@@ -18,7 +18,8 @@ public class Board extends Actor
     private HighscoreShadow highScoreShadowActor; //Shadow under the highscore
     private GameOverText gameOverText = new GameOverText(); 
     private GameOverOverlay gameOverOverlay;
-    private PlayButton playButton = new PlayButton(true); 
+    private Button playButton = new Button(new GreenfootImage("play.png"), 240, 120);
+    //private PlayButton playButton = new PlayButton(true); 
     
    
     private int width;
@@ -208,6 +209,7 @@ public class Board extends Actor
             printScore(currentState);
             getWorld().addObject(gameOverText,240,60);
             getWorld().addObject(playButton, 240, 420);
+            playButton.setCommand(new PlayCommand());
         }
     }
 
