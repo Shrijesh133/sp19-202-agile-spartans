@@ -136,6 +136,7 @@ public class Board extends Actor
                 updateFieldVisuals();
                 placeRandomField(); //Place any random value to the field array after every move
             }
+              printScore(currentState);
             
         }
         else // Cancel the Game / Game Over
@@ -307,19 +308,7 @@ public class Board extends Actor
             
             getWorld().addObject(scoreActor,240,180);
             
-            if(ScoreObserver.getScore() == HighscoreObserver.getHighScore())
-            {
-                IDecorator decorator = new HighScoreDecorator();
-                getWorld().addObject((Actor)decorator,240,240);
-                decorator.display();
-            }
-            else {
-                IDecorator decorator = new SadDecorator();
-                getWorld().addObject((Actor)decorator,240,240);
-                decorator.display();
-            }
-            
-            
+           
             highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreActor,240,300);
         }
