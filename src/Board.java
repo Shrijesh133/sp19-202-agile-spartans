@@ -148,13 +148,16 @@ public class Board extends Actor {
               printScore(currentState);
             
         }
+        else if(currentState == gamePausedState) {
+          //do nothing
+        }
         else // Cancel the Game / Game Over
 
         {
             currentState = gameOverState;
             if (currentState == gameOverState) {
                 showGameOverScreen();
-                // isOver=true;
+                
             }
 
             printScore(currentState);
