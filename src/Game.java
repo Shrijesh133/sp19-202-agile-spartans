@@ -1,5 +1,3 @@
-
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
@@ -10,7 +8,7 @@ public class Game extends WorldMaster{
     private Board board = new Board();
     private Number number;
     private SoundButton soundButton = new SoundButton();
-    private ExitButton exitButton = new ExitButton();
+    private Button exitButton = new Button(new GreenfootImage("exit.png"));
     private UndoButton undoButton = new UndoButton(true);
     private PauseButton pauseButton = new PauseButton(board);
     
@@ -22,14 +20,12 @@ public class Game extends WorldMaster{
         addObject(board, 60, 540);
         addObject(soundButton,420,540);
         addObject(exitButton,60,540);
+        exitButton.setCommand(new ExitCommand()); 
+        
         addObject(undoButton,370,540); 
         addObject(pauseButton, 110, 540);
         
         Greenfoot.start(); //Starts game automatically
     }
-    
-    
-	 
-    
-    
+
 }

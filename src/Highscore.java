@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-//import java.awt.Color;
-import java.awt.Font;
+
+
 public class Highscore extends Actor
 {
     private Board board=new Board();

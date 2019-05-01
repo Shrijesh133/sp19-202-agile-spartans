@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-//import java.awt.Color;
-import java.awt.Font;
+
+
 public class HighscoreShadow extends Actor
 {
     //Eigentlich das gleiche wie Highscore, nur in dunkel | dient als Schatten, um in das Spieldesign zu passen

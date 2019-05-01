@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=RotationStrategy
+comment0.text=\r\n\ RotationStrategy\ interface\ to\ define\ body\ for\ rotation\ strategies.\r\n\ \r\n\ @author\ (Vaubhav\ Gupta)\ \r\n\ @version\ (04-29-2019)\r\n
+comment1.params=field
+comment1.target=Field[][]\ doRotation(Field[][])
+comment1.text=\r\n\ @param\ \ field\ parameter\ that\ to\ be\ rotated\r\n\ @return\ \ an\ array\ of\ Fields\ after\ rotation\ \r\n
+numComments=2
