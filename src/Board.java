@@ -1,21 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 import java.util.ArrayList;
+
+/*
+ * Board class: actor where most of the actions of the game is performed
+ */
 public class Board extends Actor 
 {
     // Board manages pretty much everything that makes up the game (would you just reduce it to gameplay) | if (getWorld ()! = null) exists in many places, because otherwise older versions of Greenfoot may fail
-    private Field[][] field; // Field array is declared
-    private LastState[][] lastState; //For Undo
+    private Field[][] field; // Field array is declared: Current Positions of the numbers
+    private LastState[][] lastState; //Last state is declared: Previous Posotions of the numbers
 
     private Number number; //Actor references are declared / initialized
+
     private Score scoreActor;
     private Highscore highScoreActor;
     private ScoreDecorator scoreDecorator;
     private ScoreShadow scoreShadowActor;
     private HighscoreShadow highScoreShadowActor;
     private GameOverText gameOverText = new GameOverText();
+
     private GameOverOverlay gameOverOverlay;
-    private PlayButton playButton = new PlayButton(true);
+    private PlayButton playButton = new PlayButton(true); 
     
    
     private int width;
@@ -39,45 +45,41 @@ public class Board extends Actor
     private IGameState gameRunningState;
     private IGameState currentState;
     
-    
-
-
+    /*
+     * Constructor of Board
+     */
     public Board() //Constructor makes the "game preparations"
     {
         
-        field = new Field[4][4];
-        lastState = new LastState[4][4];
-        
+        field = new Field[4][4]; //Field 2D-Array size is specified for 4x4 game
+        lastState = new LastState[4][4]; //Field 2D-Array size is specified for 4x4 game
         debugMode=false;
+        isOver=false;
+        highscore=HighscoreObserver.getHighScore(); //Setting highscire from txt file
+        fillField(); //Field and LastState initialized with initial values
+        placeRandomField(); //One random value from 2 or 4 is assigned to one element in the field
+        placeRandomField(); //One random value from 2 or 4 is assigned to one element in the field
+        if(getWorld()!=null)
+        {
+            updateFieldVisuals(); //Board filled with Numbers' images
+            printScore(false); 
+        }
+        
         gameRunningState = new GameRunningState(this);
         gameNotStartedState = new GameNotStartedState(this);
         gamePausedState = new GamePausedState(this);
         gameOverState = new GameOverState(this);
-        currentState = gameNotStartedState;
-
-        
-        highscore=HighscoreObserver.getHighScore();
-        
-   
-        fillField();
-        placeRandomField();
-        placeRandomField();
-        if(getWorld()!=null)
-        {
-            updateFieldVisuals();
-            printScore(currentState);
-        }
-        
-        
+        currentState = gameNotStartedState; //Current State is set to game "NotStartedState"
     }
 
+    /*
+     * act method of greenfoot
+     */
     public void act()
     {
 
         boolean anyfieldMoved = false;
          
-     
-
         if(getWorld()!=null&&!fieldInitialized) // try to load the visual interface until getWorld () does not make any more problems (otherwise it does because of Greenfoot)
 
         {
@@ -129,13 +131,10 @@ public class Board extends Actor
             }
             
             if (anyfieldMoved)
-          {
-            updateFieldVisuals();
-            placeRandomField(); //Sets a new random field if fields have been moved
-          }
-            
-           printScore(currentState);
-        } else if(currentState == gamePausedState) {
+            {
+                updateFieldVisuals();
+                placeRandomField(); //Place any random value to the field array after every move
+            }
             
         }
         else // Cancel the Game / Game Over
@@ -144,13 +143,12 @@ public class Board extends Actor
             if (currentState == gameOverState)
             {
                 showGameOverScreen();
-              
-            
+                // isOver=true;
             }
            // printScore(true);
              printScore(currentState);
         }
-        //Precautions, so that only one input is taken per key press and not every tick
+        //Measures to ensure that only one input is taken per keystroke rather than each tick
         if (!Greenfoot.isKeyDown("up"))
         {
             up=false;
@@ -169,7 +167,12 @@ public class Board extends Actor
         }
     }
     
+    /*
+     * Setting the current state of the Game
+     * @param String gameState state to be set for the game
+     */
     public void setState(String gameState) {
+
         switch(gameState) {
             case "Playing":
             case "Resumed":
@@ -185,20 +188,15 @@ public class Board extends Actor
             break;
              
         }
-        
-    /*if(gameState == "Playing" || gameState == "Resumed"){
-        currentState = gameRunningState;
-    }  else if(gameState == "Restarted") {
-        currentState = gameNotStartedState;
-    } else if(gameState == "Paused") {
-        currentState = gamePausedState;
-    } */
     
     }
 
-    public void showGameOverScreen() //Displays the Game Over Overlay
+    /*
+     * Showing GameOver Overlay on Gameover
+     */
+    public void showGameOverScreen() 
     {
-      
+        // gameOver=true;
         if(getWorld()!=null)
         {
             for (int i=0; i<127;i=i+2)
@@ -216,7 +214,10 @@ public class Board extends Actor
         }
     }
 
-    public void updateFieldVisuals() //Updated the visual representation of the game
+    /*
+     * Show Numbers' Image according to Field 2D-Array
+     */
+    public void updateFieldVisuals()
     {
         getWorld().removeObjects(getWorld().getObjects(Number.class));
         for (int x=0; x< field.length; x++)
@@ -233,7 +234,13 @@ public class Board extends Actor
         }
     }
 
-    public void playPlaceAnimation(int pX, int pY, int pValue) //"Pops" a new random field 
+    /*
+     * Show Animation or Transition on any move (left, right, up, down)
+     * @param int pX row of the field's 2D-array
+     * @param int pY column of the field's 2D-array
+     * @param int pValue value to be assigned at [x][y] element of the field's 2D-array
+     */
+    public void playPlaceAnimation(int pX, int pY, int pValue) 
     {
         if(getWorld()!=null)
         {
@@ -248,10 +255,21 @@ public class Board extends Actor
         }
     }
 
-   
-    
-    public void printScore(IGameState currentState) //Returns the score / highscore in the game | has two display options: Game Over and in-game
-    
+    /*public void addScore(int pAdd) //Addiert Score um pAdd
+    {
+       score=score+pAdd;
+    } 
+
+    public int getScore() //Getter wegen private
+    {
+        return score;
+    } */
+
+    /*
+     * Printing current score and highscore
+     * @param boolean gameOver whether gameOver state or not 
+     */
+    public void printScore(boolean gameOver)
     {
         if(getWorld()!=null&&!(currentState == gameOverState)) //Game is running
         {
@@ -306,8 +324,10 @@ public class Board extends Actor
         }
     }
 
-
-    public void switchDebugMode() //Only on console | For testing, enable / disable DebugMode, which displays each step on the console
+    /*
+     * Switching Debugging mode
+     */
+    public void switchDebugMode()
     {
         if (debugMode)
         {
@@ -319,7 +339,11 @@ public class Board extends Actor
         }
     }
 
-    public void setInitialBoardForTesting(int pNumberOfFields) //Creates a board with "pNumberOfFields" fields
+    /*
+     * Set Initial Board for Testing by setting random value (2 or 4) to number of fields
+     * @param int pNumberOfFields Number of Fields to be initialized
+     */
+    public void setInitialBoardForTesting(int pNumberOfFields) //Erstellt ein Board mit "pNumberOfFields" Feldern
     {
         for (int i=0; i<pNumberOfFields; i++)
         {
@@ -327,7 +351,10 @@ public class Board extends Actor
         }
     }
 
-    public void fillField() //Fills the array with Field objects
+    /*
+     * Initialize the Field Array and LastState Array
+     */
+    public void fillField()
     {
         int x;
         int y;
@@ -341,7 +368,11 @@ public class Board extends Actor
         }
     }
 
-    public void printField(boolean dontClearConsole) //Shows the "playing field" on the console (DebugMode shows every single step)
+    /*
+     * Priniting out field array for debugging
+     * @param boolean dontClearConsole Console should be cleared or not
+     */
+    public void printField(boolean dontClearConsole)
     {
         if (dontClearConsole)
         {
@@ -375,7 +406,10 @@ public class Board extends Actor
         }
     }
 
-    public void placeRandomField() //Place a field in a random empty space, if any
+    /*
+     * Placing random value (2 or 4) to one of the element of Field's 2D-array
+     */
+    public void placeRandomField()
     {
         boolean numberPlaced=false;
         boolean emptyFields=false;
@@ -417,7 +451,10 @@ public class Board extends Actor
         }
     }
 
-    public void setAllMovedFalse() //Sets moved all fields to false | preparation for "new move"
+    /*
+     * Resetting each field's value to false before moving
+     */
+    public void setAllMovedFalse()
     {
         for (int x=0; x< field.length; x++)
         {
@@ -428,9 +465,11 @@ public class Board extends Actor
         }
     }
 
-    
-
-    public boolean checkForMovableFields() //Check if there are still moving fields
+    /*
+     * Check Whether there is movable field or not
+     * @return boolean movable field or not
+     */
+    public boolean checkForMovableFields()
     {
         int y;
         int x;
@@ -504,41 +543,53 @@ public class Board extends Actor
         return anyFieldsMovable;
     }
 
-    public void placeSpecificField(int pX, int pY,int  pValue) //Places a field with a specific value at a specific location (for testing)
+    /*
+     * Place value to specified element of Field's 2D-Array
+     * @param int pX row of the field's 2D-array
+     * @param int pY column of the field's 2D-array
+     * @param int pValue value to be assigned at [x][y] element of the field's 2D-array
+     */
+    public void placeSpecificField(int pX, int pY,int  pValue)
     {
         field[pX][pY].setValue(pValue);
         updateFieldVisuals();
     }
    
+    /*
+     * Storing the current state before moving to any side
+     */
     public void storeState() {
         for (int i = 0; i < field.length; i++) {
-                System.out.println("i:" + i);
-                for (int j = 0; j < field.length; j++) {
-                    System.out.println(field[i][j].getValue());
-                }
+            System.out.println("i:" + i);
+            for (int j = 0; j < field.length; j++) {
+                System.out.println(field[i][j].getValue());
             }
-            for (int i = 0; i < field.length; i++) {
-                System.out.println("i:" + i);
-                for (int j = 0; j < field.length; j++) {
-                    System.out.println("j:" +  field[i][j].getValue());
-                    if(field[i][j].getValue() == 0){
-                        lastState[i][j].setValue(0);
-                    } else {
-                        lastState[i][j].setValue(field[i][j].getValue());
-                    } 
-                }
+        }
+        for (int i = 0; i < field.length; i++) {
+            System.out.println("i:" + i);
+            for (int j = 0; j < field.length; j++) {
+                System.out.println("j:" +  field[i][j].getValue());
+                if(field[i][j].getValue() == 0){
+                    lastState[i][j].setValue(0);
+                } else {
+                    lastState[i][j].setValue(field[i][j].getValue());
+                } 
             }
-     }
+        }
+    }
         
+    /*
+     * Get Previous State of the Field's Array
+     */
     public void undo() {
         //Get Memento here and store it in Field Array
         //Set Memento to false, so player can undo only once
         for (int i = 0; i < field.length; i++) {
             System.out.println("i:" + i);
             for (int j = 0; j < field.length; j++) {
-		field[i][j].setValue(lastState[i][j].getValue());
+                field[i][j].setValue(lastState[i][j].getValue());
             }
-	}
-	updateFieldVisuals();
+        }
+        updateFieldVisuals();
     }
 }
