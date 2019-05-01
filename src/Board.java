@@ -23,9 +23,11 @@ public class Board extends Actor {
     private ScoreShadow scoreShadowActor; // Shadow under the score
     private HighscoreShadow highScoreShadowActor; // Shadow under the highscore
     private GameOverText gameOverText = new GameOverText();
+    private RatingDecorator ratingDecorator;
 
     private GameOverOverlay gameOverOverlay;
     private Button playButton = new Button(new GreenfootImage("play.png"), 240, 120);
+    private Rating rating; 
     // private PlayButton playButton = new PlayButton(true);
 
     private int width;
@@ -314,6 +316,7 @@ public class Board extends Actor {
             highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreShadowActor,242,302);
             
+      
             
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
@@ -324,7 +327,23 @@ public class Board extends Actor {
            
             highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreActor,240,300);
-
+            
+            
+            rating = new Rating();
+            getWorld().addObject(rating, 100, 240);
+            //ratingDecorator =  new RatingDecorator();
+            rating.display();
+            if(HighscoreObserver.getHighScore() == ScoreObserver.getScore()){
+                ratingDecorator = new HighRatingDecorator((IDecorator)rating);
+                getWorld().addObject(ratingDecorator, 420, 240);
+                
+            } else {
+                ratingDecorator = new LowRatingDecorator((IDecorator)rating);
+                getWorld().addObject(ratingDecorator, 420, 240);
+                
+            }
+            ratingDecorator.display();
+          
         }
     }
 
