@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class PlayButton extends Actor
+public class PlayButton extends Actor implements ICommandInvoker
 {
+    ICommand command;
+
     public PlayButton(boolean inGame) //Setzt die Größe kleiner im Spiel
     {
         if(inGame)
@@ -14,7 +16,16 @@ public class PlayButton extends Actor
     {
        if (Greenfoot.mouseClicked(this))
         {
-            Greenfoot.setWorld(new Game());
+            executeCommand();
         }
-    }    
+    }
+  
+    public void setCommand(ICommand c) {
+        command = c;
+    }
+    public void executeCommand() {
+        if (command != null) {
+            command.execute();
+        }
+    }
 }
