@@ -19,7 +19,7 @@ public class Board extends Actor {
     private Number number; // Actor references are declared / initialized
     private Score scoreActor; // Score is declared for maintaining in current score
     private Highscore highScoreActor; // Highscore is declared for maintaining in highscore score of the game
-    private ScoreDecorator scoreDecorator;
+    
     private ScoreShadow scoreShadowActor; // Shadow under the score
     private HighscoreShadow highScoreShadowActor; // Shadow under the highscore
     private GameOverText gameOverText = new GameOverText();
@@ -330,16 +330,16 @@ public class Board extends Actor {
             
             
             rating = new Rating();
-            getWorld().addObject(rating, 100, 240);
+            getWorld().addObject(rating, 200, 240);
             //ratingDecorator =  new RatingDecorator();
             rating.display();
             if(HighscoreObserver.getHighScore() == ScoreObserver.getScore()){
                 ratingDecorator = new HighRatingDecorator((IDecorator)rating);
-                getWorld().addObject(ratingDecorator, 420, 240);
+                getWorld().addObject(ratingDecorator, 340, 240);
                 
             } else {
                 ratingDecorator = new LowRatingDecorator((IDecorator)rating);
-                getWorld().addObject(ratingDecorator, 420, 240);
+                getWorld().addObject(ratingDecorator, 340, 240);
                 
             }
             ratingDecorator.display();
