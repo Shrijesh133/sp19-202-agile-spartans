@@ -10,14 +10,20 @@ public class Board extends Actor {
     // reduce it to gameplay) | if (getWorld ()! = null) exists in many places,
     // because otherwise older versions of Greenfoot may fail
     private Field[][] field; // Field array is declared: Current Positions of the numbers
+
+    
+
+
     private LastState[][] lastState; // Last state is declared: Previous Posotions of the numbers
 
     private Number number; // Actor references are declared / initialized
     private Score scoreActor; // Score is declared for maintaining in current score
     private Highscore highScoreActor; // Highscore is declared for maintaining in highscore score of the game
+    private ScoreDecorator scoreDecorator;
     private ScoreShadow scoreShadowActor; // Shadow under the score
     private HighscoreShadow highScoreShadowActor; // Shadow under the highscore
     private GameOverText gameOverText = new GameOverText();
+
     private GameOverOverlay gameOverOverlay;
     private Button playButton = new Button(new GreenfootImage("play.png"), 240, 120);
     // private PlayButton playButton = new PlayButton(true);
@@ -48,24 +54,32 @@ public class Board extends Actor {
     public Board() // Constructor makes the "game preparations"
     {
 
-        field = new Field[4][4]; // Field 2D-Array size is specified for 4x4 game
-        lastState = new LastState[4][4]; // Field 2D-Array size is specified for 4x4 game
-        debugMode = false;
-        isOver = false;
-        highscore = HighscoreObserver.getHighScore(); // Setting highscire from txt file
-        fillField(); // Field and LastState initialized with initial values
-        placeRandomField(); // One random value from 2 or 4 is assigned to one element in the field
-        placeRandomField(); // One random value from 2 or 4 is assigned to one element in the field
-        if (getWorld() != null) {
-            updateFieldVisuals(); // Board filled with Numbers' images
-            printScore(false);
-        }
-
+        
         gameRunningState = new GameRunningState(this);
         gameNotStartedState = new GameNotStartedState(this);
         gamePausedState = new GamePausedState(this);
         gameOverState = new GameOverState(this);
-        currentState = gameNotStartedState; // Current State is set to game "NotStartedState"
+        currentState = gameNotStartedState; //Current State is set to game "NotStartedState"
+        field = new Field[4][4]; //Field 2D-Array size is specified for 4x4 game
+        lastState = new LastState[4][4]; //Field 2D-Array size is specified for 4x4 game
+        debugMode=false;
+       
+        highscore=HighscoreObserver.getHighScore(); //Setting highscire from txt file
+        fillField(); //Field and LastState initialized with initial values
+        placeRandomField(); //One random value from 2 or 4 is assigned to one element in the field
+        placeRandomField(); //One random value from 2 or 4 is assigned to one element in the field
+        if(getWorld()!=null)
+        {
+            updateFieldVisuals(); //Board filled with Numbers' images
+            printScore(currentState); 
+        }
+        
+        
+
+
+        
+
+       
     }
 
     /*
@@ -138,7 +152,7 @@ public class Board extends Actor {
                 showGameOverScreen();
                 // isOver=true;
             }
-            // printScore(true);
+
             printScore(currentState);
         }
         // Measures to ensure that only one input is taken per keystroke rather than
@@ -185,10 +199,15 @@ public class Board extends Actor {
     /*
      * Showing GameOver Overlay on Gameover
      */
-    public void showGameOverScreen() {
-        // gameOver=true;
-        if (getWorld() != null) {
-            for (int i = 0; i < 127; i = i + 2) {
+
+    public void showGameOverScreen() 
+    {
+        
+        if(getWorld()!=null)
+        {
+            for (int i=0; i<127;i=i+2)
+            {
+
                 gameOverOverlay = new GameOverOverlay(i);
                 getWorld().addObject(gameOverOverlay, 0, 0);
                 Greenfoot.delay(1);
@@ -251,8 +270,11 @@ public class Board extends Actor {
      * 
      * @param boolean gameOver whether gameOver state or not
      */
-    public void printScore(boolean gameOver) {
-        if (getWorld() != null && !(currentState == gameOverState)) // Game is running
+
+    public void printScore(IGameState currentState)
+    {
+        if(getWorld()!=null&&!(currentState == gameOverState)) //Game is running
+
         {
             getWorld().removeObject(scoreShadowActor); // Shows shadows (puts the strings in black underneath and offset
                                                        // to make the scores better match the theme of the game)
@@ -264,26 +286,50 @@ public class Board extends Actor {
 
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(ScoreObserver.getScore(), false);
-            getWorld().addObject(scoreActor, 240, 520);
-            highScoreActor = new Highscore(HighscoreObserver.getHighScore(), false);
-            getWorld().addObject(highScoreActor, 240, 560);
-        } else if (getWorld() != null && (currentState == gameOverState)) // Game Over
+
+            scoreActor = new Score(ScoreObserver.getScore(),false);
+            getWorld().addObject(scoreActor,240,520);
+            
+            
+            
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
+            getWorld().addObject(highScoreActor,240,560);
+        }
+        else if(getWorld()!=null&&(currentState == gameOverState)) //Game Over
+
         {
             getWorld().removeObject(scoreShadowActor); // Shows shadows (puts the strings in black underneath and offset
                                                        // to make the scores better match the theme of the game)
             getWorld().removeObject(highScoreShadowActor);
-            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(), true);
-            getWorld().addObject(scoreShadowActor, 242, 182);
-            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(), true);
-            getWorld().addObject(highScoreShadowActor, 242, 302);
 
+            scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),true);
+            getWorld().addObject(scoreShadowActor,242,182);
+            highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
+            getWorld().addObject(highScoreShadowActor,242,302);
+            
+            
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
-            scoreActor = new Score(ScoreObserver.getScore(), true);
-            getWorld().addObject(scoreActor, 240, 180);
-            highScoreActor = new Highscore(HighscoreObserver.getHighScore(), true);
-            getWorld().addObject(highScoreActor, 240, 300);
+            scoreActor = new Score(ScoreObserver.getScore(),true);
+            
+            getWorld().addObject(scoreActor,240,180);
+            
+            if(ScoreObserver.getScore() == HighscoreObserver.getHighScore())
+            {
+                IDecorator decorator = new HighScoreDecorator();
+                getWorld().addObject((Actor)decorator,240,240);
+                decorator.display();
+            }
+            else {
+                IDecorator decorator = new SadDecorator();
+                getWorld().addObject((Actor)decorator,240,240);
+                decorator.display();
+            }
+            
+            
+            highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
+            getWorld().addObject(highScoreActor,240,300);
+
         }
     }
 
