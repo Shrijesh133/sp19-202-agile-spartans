@@ -51,10 +51,15 @@ public class Board extends Actor
     public Board() //Constructor makes the "game preparations"
     {
         
+        gameRunningState = new GameRunningState(this);
+        gameNotStartedState = new GameNotStartedState(this);
+        gamePausedState = new GamePausedState(this);
+        gameOverState = new GameOverState(this);
+        currentState = gameNotStartedState; //Current State is set to game "NotStartedState"
         field = new Field[4][4]; //Field 2D-Array size is specified for 4x4 game
         lastState = new LastState[4][4]; //Field 2D-Array size is specified for 4x4 game
         debugMode=false;
-        isOver=false;
+        //isOver=false;
         highscore=HighscoreObserver.getHighScore(); //Setting highscire from txt file
         fillField(); //Field and LastState initialized with initial values
         placeRandomField(); //One random value from 2 or 4 is assigned to one element in the field
@@ -62,14 +67,10 @@ public class Board extends Actor
         if(getWorld()!=null)
         {
             updateFieldVisuals(); //Board filled with Numbers' images
-            printScore(false); 
+            printScore(currentState); 
         }
         
-        gameRunningState = new GameRunningState(this);
-        gameNotStartedState = new GameNotStartedState(this);
-        gamePausedState = new GamePausedState(this);
-        gameOverState = new GameOverState(this);
-        currentState = gameNotStartedState; //Current State is set to game "NotStartedState"
+        
     }
 
     /*
@@ -145,7 +146,7 @@ public class Board extends Actor
                 showGameOverScreen();
                 // isOver=true;
             }
-           // printScore(true);
+          
              printScore(currentState);
         }
         //Measures to ensure that only one input is taken per keystroke rather than each tick
@@ -196,7 +197,7 @@ public class Board extends Actor
      */
     public void showGameOverScreen() 
     {
-        // gameOver=true;
+        
         if(getWorld()!=null)
         {
             for (int i=0; i<127;i=i+2)
@@ -269,7 +270,7 @@ public class Board extends Actor
      * Printing current score and highscore
      * @param boolean gameOver whether gameOver state or not 
      */
-    public void printScore(boolean gameOver)
+    public void printScore(IGameState currentState)
     {
         if(getWorld()!=null&&!(currentState == gameOverState)) //Game is running
         {
