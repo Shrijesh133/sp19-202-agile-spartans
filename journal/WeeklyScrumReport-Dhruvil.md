@@ -1,4 +1,4 @@
-# Weekly Scrum Report - Shivani Reddy
+# Weekly Scrum Report - Dhruvil Parikh
 
 ## Week 1 (April 6th - April 12th)
 
