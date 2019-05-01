@@ -1,23 +1,31 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
-public class Game extends WorldMaster
-{
+public class Game extends WorldMaster{
+    
+    private int width;
+    private int height;
     private Board board = new Board();
     private Number number;
     private SoundButton soundButton = new SoundButton();
     private Button exitButton = new Button(new GreenfootImage("exit.png"));
+    private UndoButton undoButton = new UndoButton(true);
+    private PauseButton pauseButton = new PauseButton(board);
     
-    public Game() //Erstellt die Welt und startet das Spiel automatisch
+    public Game() //Create the world and start the game automatically
     {    
-        super(480, 600, 1); //Erstellt die Welt (480*600, da jedes Feld 120*120 groß ist + 1 Reihe für Score etc. | eine 4*5 Welt ginge auch, duch die "kleine Skalierung" lassen sich dann die Objekte aber nicht so gut ausrichten)
+        super(480, 600, 1); //Creates the world (480 * 600, since each field is 120 * 120 large + 1 row for score etc. | a 4 * 5 world would work too, but the "small scaling" will not align the objects so well)
+        
 
-        addObject(board,60,540); //Fügt Objekte hinzu
+        addObject(board, 60, 540);
         addObject(soundButton,420,540);
-        //soundButton.setCommand(new SoundCommand(soundButton));
-
         addObject(exitButton,60,540);
         exitButton.setCommand(new ExitCommand()); 
         
-        Greenfoot.start(); //Startet Spiel automatisch
+        addObject(undoButton,370,540); 
+        addObject(pauseButton, 110, 540);
+        
+        Greenfoot.start(); //Starts game automatically
     }
+
 }

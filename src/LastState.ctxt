@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=LastState
+comment1.params=
+comment1.target=int\ getValue()
+comment2.params=pValue
+comment2.target=void\ setValue(int)
+comment3.params=
+comment3.target=boolean\ getMoved()
+comment4.params=pMoved
+comment4.target=void\ setMoved(boolean)
+numComments=5

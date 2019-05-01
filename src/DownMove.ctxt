@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=DownMove
+comment1.params=field
+comment1.target=DownMove(Field[][])
+comment2.params=field\ score
+comment2.target=javafx.util.Pair\ moveDirection(Field[][],\ java.lang.Integer)
+numComments=3
