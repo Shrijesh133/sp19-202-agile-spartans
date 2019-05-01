@@ -49,3 +49,32 @@ Merge conflicts from master code, Integration to be done
 
 - Task1: 6h
 - Task2: 4h
+
+
+## WEEK 3 (04/25/19 - 04/29/19)
+
+### Finished Last Week (spent 10h)
+
+- 04/25/19:  Started implementing template pattern for move actions (2h)
+- 04/26/19 : completed up move,down move (2h)
+- 04/27/19 : completed right move,left move(2h)
+- 04/28/19 : Integarte code(2h)
+- 04/29/19 : resolving few issues coming up with integration(2h)
+
+### Planned Next Week 
+- Task1 : UML diagrams (4h)
+- Task2 : Integrate all code(4h)
+- Task2 : Prepare for demo(4h)
+
+
+
+### Problems
+## Blockers :
+No Blockers
+
+
+### Time to Spend
+
+- Task1: 4h
+- Task2: 4h
+- Task3: 4h
