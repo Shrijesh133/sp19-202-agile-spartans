@@ -10,6 +10,7 @@ public class Board extends Actor
     private Number number; //Actor references are declared / initialized
     private Score scoreActor;
     private Highscore highScoreActor;
+    private ScoreDecorator scoreDecorator;
     private ScoreShadow scoreShadowActor;
     private HighscoreShadow highScoreShadowActor;
     private GameOverText gameOverText = new GameOverText();
@@ -265,6 +266,9 @@ public class Board extends Actor
             getWorld().removeObject(highScoreActor);
             scoreActor = new Score(ScoreObserver.getScore(),false);
             getWorld().addObject(scoreActor,240,520);
+            
+            
+            
             highScoreActor = new Highscore(HighscoreObserver.getHighScore(),false);
             getWorld().addObject(highScoreActor,240,560);
         }
@@ -276,11 +280,27 @@ public class Board extends Actor
             getWorld().addObject(scoreShadowActor,242,182);
             highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreShadowActor,242,302);
-
+            
+            
             getWorld().removeObject(scoreActor);
             getWorld().removeObject(highScoreActor);
             scoreActor = new Score(ScoreObserver.getScore(),true);
+            
             getWorld().addObject(scoreActor,240,180);
+            
+            if(ScoreObserver.getScore() == HighscoreObserver.getHighScore())
+            {
+                IDecorator decorator = new HighScoreDecorator();
+                getWorld().addObject((Actor)decorator,240,240);
+                decorator.display();
+            }
+            else {
+                IDecorator decorator = new SadDecorator();
+                getWorld().addObject((Actor)decorator,240,240);
+                decorator.display();
+            }
+            
+            
             highScoreActor = new Highscore(HighscoreObserver.getHighScore(),true);
             getWorld().addObject(highScoreActor,240,300);
         }
