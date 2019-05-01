@@ -1,6 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 
+/*
+ * Menu Screen
+ */
 public class Menu extends WorldMaster
 {
     private Logo logo = new Logo();
@@ -11,6 +14,9 @@ public class Menu extends WorldMaster
     private Highscore highScoreActor;
     private HighscoreShadow highScoreShadowActor;
 
+    /*
+     * Constructor
+     */
     public Menu() //Erstellt das aus Modulen bestehende Menü und startet das Spiel u. die Musik automatisch
     {    
         super(480, 600, 1); //Erstellt Welt
@@ -35,6 +41,10 @@ public class Menu extends WorldMaster
         Greenfoot.start(); //Startet
     }
 
+    /*
+     * Load high score from txt file
+     * @return int highscore from text file
+     */
     public int loadHighscore() //Lädt den highscore aus highscore.txt
     {
         int readHighscore = 0;

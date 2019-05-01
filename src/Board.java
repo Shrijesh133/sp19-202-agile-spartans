@@ -159,7 +159,6 @@ public class Board extends Actor {
                 showGameOverScreen();
                 
             }
-
             printScore(currentState);
         }
         // Measures to ensure that only one input is taken per keystroke rather than
