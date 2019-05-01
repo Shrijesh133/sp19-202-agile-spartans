@@ -1,5 +1,7 @@
 
-## Deepika Yannamani 04/20/18 (04/14/19 - 04/18/19)
+## Deepika Yannamani
+
+## WEEK 1 (04/14/19 - 04/18/19)
 
 ### Finished Last Week (spent 8h)
 
@@ -21,3 +23,29 @@ No blockers
 
 - Task1: 5h
 - Task2: 5h
+
+
+## WEEK 2 (04/19/19 - 04/24/19)
+
+### Finished Last Week (spent 10h)
+
+- 04/19/19:  Started implementing observer pattern for updating score (2h)
+- 04/20/19 : scoreobserver implementation done and started integration (2h)
+- 04/21/19 : Integration with existing master code and resolving merge issues(2h)
+- 04/22/19 : completed high score observer implementation (2h)
+- 04/23/19 : high score integration and bug fixes(2h)
+
+### Planned Next Week 
+- Task1 : Implement move actions(up,right,left,down) using template pattern(6h)
+- Task2 : Integrate code and resolve issues(4h)
+
+
+### Problems
+## Blockers :
+Merge conflicts from master code, Integration to be done
+
+
+### Time to Spend
+
+- Task1: 6h
+- Task2: 4h
