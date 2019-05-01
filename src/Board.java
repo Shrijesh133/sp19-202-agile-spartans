@@ -19,6 +19,7 @@ public class Board extends Actor {
     private Number number; // Actor references are declared / initialized
     private Score scoreActor; // Score is declared for maintaining in current score
     private Highscore highScoreActor; // Highscore is declared for maintaining in highscore score of the game
+    private ScoreDecorator scoreDecorator;
     private ScoreShadow scoreShadowActor; // Shadow under the score
     private HighscoreShadow highScoreShadowActor; // Shadow under the highscore
     private GameOverText gameOverText = new GameOverText();
