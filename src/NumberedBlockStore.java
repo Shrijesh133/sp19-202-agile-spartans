@@ -24,6 +24,8 @@ public class NumberedBlockStore
         NumberedBlockMap.put("NumberedBlock512", new TwoNumberedBlock(512)); 
         NumberedBlockMap.put("NumberedBlock1024", new TwoNumberedBlock(1024)); 
         NumberedBlockMap.put("NumberedBlock2048", new TwoNumberedBlock(2048)); 
+		NumberedBlockMap.put("NumberedBlock4096", new TwoNumberedBlock(4096)); 
+	    NumberedBlockMap.put("NumberedBlock8192", new TwoNumberedBlock(8192));
     } 
        
     public static NumberedBlock getNumberedBlock(String colorName) 
