@@ -10,6 +10,7 @@ public class GameOverOverlay extends Actor
      * @param int pTransparency
      */
     public GameOverOverlay(int pTransparency)
+
     {
         getImage().setTransparency(pTransparency);
     }
