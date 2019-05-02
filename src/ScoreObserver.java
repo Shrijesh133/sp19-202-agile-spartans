@@ -14,4 +14,8 @@ public class ScoreObserver extends Observer{
    public static int getScore() {
        return currentScore;
     }
+    
+    public static void resetScore()  {
+        currentScore = 0;
+    }
 }

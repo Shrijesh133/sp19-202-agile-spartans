@@ -3,5 +3,5 @@ comment0.target=UpMove
 comment1.params=field
 comment1.target=UpMove(Field[][])
 comment2.params=field\ score
-comment2.target=boolean\ moveDirection(Field[][],\ int)
+comment2.target=javafx.util.Pair\ moveDirection(Field[][],\ java.lang.Integer)
 numComments=3

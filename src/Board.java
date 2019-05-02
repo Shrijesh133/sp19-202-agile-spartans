@@ -13,7 +13,7 @@ public class Board extends Actor
     private HighscoreShadow highScoreShadowActor;
     private GameOverText gameOverText = new GameOverText();
     private GameOverOverlay gameOverOverlay;
-    private PlayButton playButton = new PlayButton(true);
+    private PlayButton playButton= new PlayButton(true);
     
    
     private int width;
@@ -31,6 +31,7 @@ public class Board extends Actor
     private boolean isOver;
 
     private MoveSubject move ;
+  
 
     private IGameState gameNotStartedState;
     private IGameState gamePausedState;
@@ -51,8 +52,7 @@ public class Board extends Actor
        
         //isOver=false;
         highscore=HighscoreObserver.getHighScore();
-        
-   
+     
         fillField();
         placeRandomField();
         placeRandomField();
@@ -242,6 +242,7 @@ public class Board extends Actor
             getWorld().removeObject(scoreShadowActor); //Zeigt Schatten (stellt die Strings in schwarz daruntergelegt und versetzt dar, damit die Scores besser zum Design des Spiels passen)
             getWorld().removeObject(highScoreShadowActor);
             scoreShadowActor = new ScoreShadow(ScoreObserver.getScore(),false);
+           
             getWorld().addObject(scoreShadowActor,242,522);
             highScoreShadowActor = new HighscoreShadow(HighscoreObserver.getHighScore(),false);
             getWorld().addObject(highScoreShadowActor,242,562);
