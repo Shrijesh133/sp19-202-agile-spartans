@@ -20,7 +20,15 @@ public class RotateClockwise implements RotationStrategy
      */
      public Field[][] doRotation(Field[][] field)
      {
-     return field;
-     }
+        final int M = field.length;
+        final int N = field[0].length;
+        Field[][] ret = new Field[N][M];
+        for (int r = 0; r < M; r++) {
+        for (int c = 0; c < N; c++) {
+                ret [M-1-r][c] = field[c][r];
+            }
+        }
+    return ret;
+   }
     
 }

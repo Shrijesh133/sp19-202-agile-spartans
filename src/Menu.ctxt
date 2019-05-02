@@ -1,7 +1,10 @@
 #BlueJ class context
 comment0.target=Menu
+comment0.text=\r\n\ Menu\ Screen\r\n
 comment1.params=
 comment1.target=Menu()
+comment1.text=\r\n\ Constructor\r\n
 comment2.params=
 comment2.target=int\ loadHighscore()
+comment2.text=\r\n\ Load\ high\ score\ from\ txt\ file\r\n\ @return\ int\ highscore\ from\ text\ file\r\n
 numComments=3

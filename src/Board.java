@@ -41,6 +41,9 @@ public class Board extends Actor {
     private boolean down = false;
     private boolean left = false;
     private boolean right = false;
+    
+    private boolean mkey=false;
+    private boolean nkey=false;
 
     private MoveSubject move;
 
@@ -132,7 +135,6 @@ public class Board extends Actor {
                 anyfieldMoved = move.move();
                 left = true;
             }
-
             if (Greenfoot.isKeyDown("right") && !right) {
 
                 currentState.play();
@@ -141,7 +143,22 @@ public class Board extends Actor {
                 anyfieldMoved = move.move();
                 right = true;
             }
-
+            if (Greenfoot.isKeyDown("m")&&!mkey)
+            {
+                RotationContext context = new RotationContext(new RotateClockwise());		
+                field = context.executeStrategy(field);	
+      
+                updateFieldVisuals();
+                mkey = true;          
+            }
+            if (Greenfoot.isKeyDown("n")&&!nkey)
+            {
+                RotationContext context = new RotationContext(new RotateAnticlockwise());		
+                field = context.executeStrategy(field);
+      
+                updateFieldVisuals();
+                nkey = true;         
+            }
             if (anyfieldMoved) {
                 updateFieldVisuals();
                 placeRandomField(); // Place any random value to the field array after every move
@@ -177,6 +194,14 @@ public class Board extends Actor {
         }
         if (!Greenfoot.isKeyDown("right")) {
             right = false;
+        }
+        if (!Greenfoot.isKeyDown("m"))
+        {
+            mkey=false;
+        }
+        if (!Greenfoot.isKeyDown("n"))
+        {
+            nkey=false;
         }
     }
 
