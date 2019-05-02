@@ -1,5 +1,7 @@
 #BlueJ class context
 comment0.target=MusicCopyright
+comment0.text=\r\n\ MusixcCopyright\ Actor\:\ Get\ the\ music\ to\ played\ in\ background\r\n
 comment1.params=
 comment1.target=void\ act()
+comment1.text=\r\n\ Act\ method\ of\ the\ greenfoot\r\n\ On\ click\ play\ soundtrack\ of\ the\ game\r\n
 numComments=2

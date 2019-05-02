@@ -17,7 +17,7 @@ public class DownMove extends MoveSubject {
         Boolean anyfieldMoved = false;
 
 
-   for (y=(field.length-2); y>=0; y--) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
+        for (y=(field.length-2); y>=0; y--) //Verschachtelte for-Schleife, um die jeweiligen Felder des Arrays zu bearbeiten
                 {
                     for (x=0; x< field.length; x++)
                     {
@@ -39,7 +39,7 @@ public class DownMove extends MoveSubject {
                         }
                     }
                 }
-    return new Pair(score,anyfieldMoved) ;
+          return new Pair(score,anyfieldMoved) ;
     }
 
 }

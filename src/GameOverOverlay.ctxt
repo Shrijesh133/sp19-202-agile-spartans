@@ -1,5 +1,7 @@
 #BlueJ class context
 comment0.target=GameOverOverlay
+comment0.text=\r\n\ GameOverOvelay\ Actor\ The\ Transparent\ overlay\ after\ the\ game\ is\ over\r\n
 comment1.params=pTransparency
 comment1.target=GameOverOverlay(int)
+comment1.text=\r\n\ Constructor\r\n\ @param\ int\ pTransparency\r\n
 numComments=2

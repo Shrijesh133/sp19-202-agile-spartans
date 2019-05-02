@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class HelpButton extends Actor
+public class HelpButton extends Actor implements ICommandInvoker
 {
+    ICommand command;
+    
     public HelpButton() //Setzt die Größe kleiner im Spiel
     {
         getImage().scale(40,40);
@@ -11,7 +13,16 @@ public class HelpButton extends Actor
     {
         if (Greenfoot.mouseClicked(this))
         {
-            Greenfoot.setWorld(new Options());
+            executeCommand();
         }
-    }       
+    }
+    
+    public void setCommand(ICommand c) {
+        command = c;
+    }
+    public void executeCommand() {
+        if (command != null) {
+            command.execute();
+        }
+    }
 }

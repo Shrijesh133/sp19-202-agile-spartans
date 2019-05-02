@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=NumberedBlockStore
+comment1.params=colorName
+comment1.target=NumberedBlock\ getNumberedBlock(java.lang.String)
+numComments=2
