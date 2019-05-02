@@ -16,7 +16,7 @@ public class Board extends Actor {
 
     private LastState[][] lastState; // Last state is declared: Previous Posotions of the numbers
 
-    private Number number; // Actor references are declared / initialized
+    private NumberedBlock number; // Actor references are declared / initialized
     private Score scoreActor; // Score is declared for maintaining in current score
     private Highscore highScoreActor; // Highscore is declared for maintaining in highscore score of the game
     
@@ -260,12 +260,24 @@ public class Board extends Actor {
      * Show Numbers' Image according to Field 2D-Array
      */
     public void updateFieldVisuals() {
-        getWorld().removeObjects(getWorld().getObjects(Number.class));
+        getWorld().removeObjects(getWorld().getObjects(NumberedBlock.class));
         for (int x = 0; x < field.length; x++) {
             for (int y = 0; y < field.length; y++) {
                 int currentValue = field[x][y].getValue();
                 if (currentValue > 0) {
-                    number = new Number(currentValue, 120);
+                    
+                        switch(currentValue)
+        		{
+    			case 2:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
+    			break;
+    			case 4: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
+    			break;
+    		       	case 8: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
+    			break;	    			
+    		    } 
                     getWorld().addObject(number, x * 120 + 60, y * 120 + 60);
                 }
             }
@@ -284,12 +296,12 @@ public class Board extends Actor {
      */
     public void playPlaceAnimation(int pX, int pY, int pValue) {
         if (getWorld() != null) {
-            for (int i = 1; i < 120; i = i + 16) {
-                number = new Number(pValue, i);
-                getWorld().addObject(number, pX * 120 + 60, pY * 120 + 60);
-                Greenfoot.delay(1);
-                getWorld().removeObject(number);
-            }
+            //for (int i = 1; i < 120; i = i + 16) {
+                //number = new Number(pValue, i);
+                //getWorld().addObject(number, pX * 120 + 60, pY * 120 + 60);
+                //Greenfoot.delay(1);
+                //getWorld().removeObject(number);
+            //}
             updateFieldVisuals();
         }
     }
