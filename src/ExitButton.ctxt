@@ -1,7 +1,10 @@
 #BlueJ class context
 comment0.target=ExitButton
+comment0.text=\r\n\ ExitButton\ Actor\:\ When\ clicked\ navigate\ to\ Menu\ Screen\ \ \r\n
 comment1.params=
 comment1.target=ExitButton()
+comment1.text=\r\n\ Constructor\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Act\ method\ of\ greenfoot,\ On\ click\ navigate\ to\ Menu\ Screen\r\n
 numComments=3

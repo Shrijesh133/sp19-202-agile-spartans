@@ -1,9 +1,7 @@
 #BlueJ class context
 comment0.target=Field
-comment0.text=\r\n\ Field\ Actor\:\ which\ specify\ which\ field\ has\ which\ value\r\n
 comment1.params=
 comment1.target=int\ getValue()
-comment1.text=\r\n\ Get\ the\ value\ of\ the\ field\r\n\ @return\ int\ value\ of\ the\ field\r\n
 comment2.params=pValue
 comment2.target=void\ setValue(int)
 comment2.text=\r\n\ Set\ the\ value\ of\ the\ field\r\n\ @param\ int\ pValue\ value\ to\ be\ set\ for\ the\ field\r\n
