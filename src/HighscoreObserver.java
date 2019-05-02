@@ -12,10 +12,10 @@ public class HighscoreObserver extends Observer{
    @Override
    public void update(int score) {
        if (score>currentHighScore)
-        {
+       {
             currentHighScore=score;
             saveHighscore(score);
-        }
+       }
    }
    
    public static int getHighScore() {

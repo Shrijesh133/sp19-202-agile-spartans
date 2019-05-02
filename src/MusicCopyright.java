@@ -1,10 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/*
+ * MusixcCopyright Actor: Get the music to played in background
+ */
 public class MusicCopyright extends Actor
 {
     private String link= "http://newagemusic.guide/new-age-music-history/the-amazing-windows-xp-installation-songs/";
     
-    public void act() //Funktioniert als Button und öffnet die Quellseite der Musik im Browser
+    /*
+     * Act method of the greenfoot
+     * On click play soundtrack of the game
+     */
+    public void act()
     {
         if (Greenfoot.mouseClicked(this))
         {
