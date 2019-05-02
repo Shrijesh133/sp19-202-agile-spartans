@@ -266,6 +266,9 @@ public class Board extends Actor {
                 int currentValue = field[x][y].getValue();
                 if (currentValue > 0) {
                     
+                    /*
+                     * Call Prototype blocks.
+                     */
                         switch(currentValue)
         		{
     			case 2:
