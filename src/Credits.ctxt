@@ -3,5 +3,5 @@ comment0.target=Credits
 comment0.text=\r\n\ Credit\ to\ the\ ccontributors\r\n
 comment1.params=
 comment1.target=Credits()
-comment1.text=\r\n\ \r\n
+comment1.text=\r\n\ Constructor\r\n
 numComments=2
