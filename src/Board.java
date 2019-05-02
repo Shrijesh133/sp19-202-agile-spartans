@@ -276,7 +276,37 @@ public class Board extends Actor {
     			break;
     		       	case 8: 
     			number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
-    			break;	    			
+    			break;	
+    			case 16: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
+    			break;
+    			case 32:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
+    			break;
+    			case 64: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
+    			break;
+    			case 128: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock128");
+    			break;
+    			case 256: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
+    			break;
+    			case 512: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
+    			break;
+    			case 1024: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
+    			break;
+    			case 2048: 
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+    			break;
+    			case 4096:
+    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4096");
+    			break;
+    			case 8192: 
+        	        number = NumberedBlockStore.getNumberedBlock("NumberedBlock8192");
+                        break;
     		    } 
                     getWorld().addObject(number, x * 120 + 60, y * 120 + 60);
                 }
