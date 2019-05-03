@@ -4,14 +4,13 @@ public class upkey extends Actor
 {
     public boolean key;
     public Board board; 
-    public upkey(boolean inGame, Board board) //Setzt die Größe kleiner im Spiel
+    public upkey(boolean inGame) //Setzt die Größe kleiner im Spiel
     {
       
         if(inGame)
         {
             getImage().scale(40,40);  
-            key = false;
-            //board = board;
+            key = false;         
         }
     }
     
@@ -21,10 +20,8 @@ public class upkey extends Actor
         {
             key = true;//Greenfoot.setWorld(new Game());
             board = (Board)getWorld().getObjects(Board.class).get(0);
-            
-
-            board.notifyAll();
-
+            board.method();
+            //board.notifyAll();
         }
     }     
 }
