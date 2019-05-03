@@ -41,17 +41,10 @@ public class Board extends Actor {
     private boolean down = false;
     private boolean left = false;
     private boolean right = false;
-    private boolean mousebtnsFlag= false;
-     
+    
     private boolean mkey=false;
     private boolean nkey=false;
-    private boolean xkey=false;
- 
-    private upkey upkeybtn = new upkey(true);
-    private downkey downkeybtn = new downkey(true);
-    private rightkey rightkeybtn = new rightkey(true);
-    private leftkey leftkeybtn = new leftkey(true);
-    
+
     private MoveSubject move;
 
     private IGameState gameNotStartedState;
@@ -94,21 +87,6 @@ public class Board extends Actor {
        
     }
 
-    public void moveup()
-    {
-          currentState.play();
-          storeState();
-          move = new UpMove(field);
-              
-          up = true;        
-         if(move.move())
-         {
-         updateFieldVisuals();
-         placeRandomField(); // Place any random value to the field array after every move  
-        }
-    }
-    
-       
     /*
      * act method of greenfoot
      */
@@ -123,9 +101,11 @@ public class Board extends Actor {
             updateFieldVisuals();
             fieldInitialized = true;
         }
-        
         if (checkForMovableFields() && !(currentState == gameOverState || currentState == gamePausedState)) // Move and
-                                                                                                     // running
+                                                                                                            // add only
+                                                                                                            // while the
+                                                                                                            // game is
+                                                                                                            // running
         {
 
             setAllMovedFalse();
@@ -179,27 +159,6 @@ public class Board extends Actor {
                 updateFieldVisuals();
                 nkey = true;         
             }
-            if (Greenfoot.isKeyDown("x")&&!xkey)
-            { 
-                mousebtnsFlag = !mousebtnsFlag;
-                
-                if(mousebtnsFlag)  
-                {
-                getWorld().addObject(leftkeybtn, 360, 540);
-                getWorld().addObject(rightkeybtn, 440, 540);
-                getWorld().addObject(upkeybtn, 400, 500);
-                getWorld().addObject(downkeybtn, 400, 580);  
-                }
-                else
-                {
-                getWorld().removeObject(leftkeybtn);
-                getWorld().removeObject(rightkeybtn);
-                getWorld().removeObject(upkeybtn);
-                getWorld().removeObject(downkeybtn); 
-                }
-                
-                xkey = true;  
-            }
             if (anyfieldMoved) {
                 updateFieldVisuals();
                 placeRandomField(); // Place any random value to the field array after every move
@@ -243,10 +202,6 @@ public class Board extends Actor {
         if (!Greenfoot.isKeyDown("n"))
         {
             nkey=false;
-        }
-        if (!Greenfoot.isKeyDown("x"))
-        {
-            xkey=false;
         }
     }
 
