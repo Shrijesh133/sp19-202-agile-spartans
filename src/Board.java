@@ -46,7 +46,8 @@ public class Board extends Actor {
     private boolean mkey=false;
     private boolean nkey=false;
     private boolean xkey=false;
- 
+     private boolean ykey=false;
+     
     private upkey upkeybtn = new upkey(true);
     private downkey downkeybtn = new downkey(true);
     private rightkey rightkeybtn = new rightkey(true);
