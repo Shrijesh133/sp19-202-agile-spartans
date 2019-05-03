@@ -54,7 +54,7 @@
 
 ### Planned Next Week 
 - Task1: Wrapping up the code and testing
-- Task2: UML Diagrams, Wireframes, 
+- Task2: UML Diagrams, Wireframes, Demo video
 
 ### Problems
 
@@ -66,13 +66,15 @@
 ## Week 4 (April 27th - May 3rd)
 
 ### Finished Last Week 
-- Task1: 
-- Task2: 
-- Task3: 
+- Task1: Testing code, confirming code consistency
+- Task2: UML Diagram sketching and editing
+- Task3: Wrapping up the project
+- Task4: Making the demo video, editting, uploading to youtube
 
 ### Problems
 
 ### Time Spend
-- Task1: 5 hrs
+- Task1: 6 hrs
 - Task2: 4 hrs
-- Task3: 6 hrs
+- Task3: 4 hrs
+- Task4: 4 hrs

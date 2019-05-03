@@ -11,7 +11,10 @@ public class HighscoreObserver extends Observer{
 
    @Override
    public void update(int score) {
-       if (score>currentHighScore)
+       
+       score = ScoreObserver.getScore();
+       
+       if (score > currentHighScore)
        {
             currentHighScore=score;
             saveHighscore(score);
