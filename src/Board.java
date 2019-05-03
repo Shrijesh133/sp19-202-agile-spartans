@@ -14,8 +14,9 @@ public class Board extends Actor {
     
 
 
-    private LastState[][] lastState; // Last state is declared: Previous Posotions of the numbers
-
+    private LastState[][] lastState; // Last state is declared: Previous Posotions of the numbers    privae
+    private LastScore lastScore;
+    
     private NumberedBlock number; // Actor references are declared / initialized
     private Score scoreActor; // Score is declared for maintaining in current score
     private Highscore highScoreActor; // Highscore is declared for maintaining in highscore score of the game
@@ -67,6 +68,9 @@ public class Board extends Actor {
         currentState = gameNotStartedState; //Current State is set to game "NotStartedState"
         field = new Field[4][4]; //Field 2D-Array size is specified for 4x4 game
         lastState = new LastState[4][4]; //Field 2D-Array size is specified for 4x4 game
+        lastScore = new LastScore();
+
+        
         debugMode=false;
        
         highscore=HighscoreObserver.getHighScore(); //Setting highscire from txt file
@@ -145,15 +149,15 @@ public class Board extends Actor {
             }
             if (Greenfoot.isKeyDown("m")&&!mkey)
             {
-                RotationContext context = new RotationContext(new RotateClockwise());		
-                field = context.executeStrategy(field);	
+                RotationContext context = new RotationContext(new RotateClockwise());       
+                field = context.executeStrategy(field); 
       
                 updateFieldVisuals();
                 mkey = true;          
             }
             if (Greenfoot.isKeyDown("n")&&!nkey)
             {
-                RotationContext context = new RotationContext(new RotateAnticlockwise());		
+                RotationContext context = new RotationContext(new RotateAnticlockwise());       
                 field = context.executeStrategy(field);
       
                 updateFieldVisuals();
@@ -270,47 +274,47 @@ public class Board extends Actor {
                      * Call Prototype blocks.
                      */
                         switch(currentValue)
-        		{
-    			case 2:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
-    			break;
-    			case 4: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
-    			break;
-    		       	case 8: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
-    			break;	
-    			case 16: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
-    			break;
-    			case 32:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
-    			break;
-    			case 64: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
-    			break;
-    			case 128: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock128");
-    			break;
-    			case 256: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
-    			break;
-    			case 512: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
-    			break;
-    			case 1024: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
-    			break;
-    			case 2048: 
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
-    			break;
-    			case 4096:
-    			number = NumberedBlockStore.getNumberedBlock("NumberedBlock4096");
-    			break;
-    			case 8192: 
-        	        number = NumberedBlockStore.getNumberedBlock("NumberedBlock8192");
+                {
+                case 2:
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock2");
+                break;
+                case 4: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
+                break;
+                    case 8: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
+                break;  
+                case 16: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock16");
+                break;
+                case 32:
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock32");
+                break;
+                case 64: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock64");
+                break;
+                case 128: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock128");
+                break;
+                case 256: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock256");
+                break;
+                case 512: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock512");
+                break;
+                case 1024: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock1024");
+                break;
+                case 2048: 
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock2048");
+                break;
+                case 4096:
+                number = NumberedBlockStore.getNumberedBlock("NumberedBlock4096");
+                break;
+                case 8192: 
+                    number = NumberedBlockStore.getNumberedBlock("NumberedBlock8192");
                         break;
-    		    } 
+                } 
                     getWorld().addObject(number, x * 120 + 60, y * 120 + 60);
                 }
             }
@@ -614,16 +618,12 @@ public class Board extends Actor {
      * Storing the current state before moving to any side
      */
     public void storeState() {
+        
+        lastScore.setValue(ScoreObserver.getScore());
         for (int i = 0; i < field.length; i++) {
-            System.out.println("i:" + i);
+            
             for (int j = 0; j < field.length; j++) {
-                System.out.println(field[i][j].getValue());
-            }
-        }
-        for (int i = 0; i < field.length; i++) {
-            System.out.println("i:" + i);
-            for (int j = 0; j < field.length; j++) {
-                System.out.println("j:" + field[i][j].getValue());
+                
                 if (field[i][j].getValue() == 0) {
                     lastState[i][j].setValue(0);
                 } else {
@@ -639,8 +639,9 @@ public class Board extends Actor {
     public void undo() {
         // Get Memento here and store it in Field Array
         // Set Memento to false, so player can undo only once
+        ScoreObserver.setScore(lastScore.getValue());
         for (int i = 0; i < field.length; i++) {
-            System.out.println("i:" + i);
+
             for (int j = 0; j < field.length; j++) {
                 field[i][j].setValue(lastState[i][j].getValue());
             }
