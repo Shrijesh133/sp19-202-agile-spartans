@@ -11,7 +11,7 @@ Agile Spartans
 * [Shivani](https://github.com/Shivanireddy25/sp19-202-agile-spartans)
 * [Deepika](https://github.com/deepikay912/sp19-202-agile-spartans)
 * [He Jiang](https://github.com/masakichi4/sp19-202-agile-spartans)
-* [Dhruvil](https://github.com/DhruvilBParikh/sp19-202-agile-spartanso)
+* [Dhruvil](https://github.com/DhruvilBParikh/sp19-202-agile-spartans)
 * [Vaibhav](https://github.com/vaibhav-gupta1911/sp19-202-agile-spartans)
 
 ## Project Name
