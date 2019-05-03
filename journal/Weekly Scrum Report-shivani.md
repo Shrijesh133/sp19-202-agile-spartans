@@ -64,7 +64,7 @@ No blockers
 - Task 1 : Implement state pattern to maintain game state.
 - Task 2 : create code reviews and manual testing use-cases.
 - Task 3 : Integrate code with master branch and resolve conflicts.
-- Task 4 : Analyze the implementation of decorator pattern in showing rating for a user.
+- Task 4 : Analyze the implementation of composite pattern in rendering objects in board screen.
 
 
 ### Problems
@@ -76,7 +76,7 @@ No blockers
 - Task 1 : 8 hrs
 - Task 2 : 2 hrs
 - Task 3 : 4 hrs
-- Task 4 : 1 hrs
+- Task 4 : 3 hrs
 
 
 
@@ -84,28 +84,14 @@ No blockers
 ## Week 4 (April 26th - May 2nd)
 
 ### Finished Last Week 
-- Task 1 : Implement state pattern to maintain game state.
-- Task 2 : create code reviews and manual testing use-cases.
-- Task 3 : Integrate code with master branch and resolve conflicts.
-- Task 4 : Analyze the implementation of decorator pattern in showing rating for a user.
+
 
 ### Planned Next Week 
-- Task 1 : Implement decorator pattern to show the rating based on the score.
-- Task 2 : Merge all the changes, stablize the game and perform testing.
-- Task 3 : Document the game flow and patterns used and all the related UML diagrams
-- Task 4 : Have a sprint retrospective and discuss on sprint outcomes .
 
 
 ### Problems
 
-No blockers
-
 ### Time Spend
-- Task 1 : 7 hrs
-- Task 2 : 3 hrs
-- Task 3 : 2 hrs
-- Task 4 : 3 hrs
-
 
 
 
