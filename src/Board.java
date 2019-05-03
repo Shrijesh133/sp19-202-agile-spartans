@@ -107,7 +107,7 @@ public class Board extends Actor {
          placeRandomField(); // Place any random value to the field array after every move  
         }
     }
-     
+    
        
     /*
      * act method of greenfoot
