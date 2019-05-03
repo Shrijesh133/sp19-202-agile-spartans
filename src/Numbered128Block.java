@@ -7,15 +7,15 @@
 
 import greenfoot.*;  
 
-public class TwoNumberedBlock extends NumberedBlock
+public class Numbered128Block extends NumberedBlock
 {
  
     /**
-     * Constructor for objects of class TwoNumberBlock
+     * Constructor for objects of class Numbered2Block
      */
-    public TwoNumberedBlock(int number) //Setzt Bild je nach übergebenem Parameter
+    public Numbered128Block() //Setzt Bild je nach übergebenem Parameter
     {
-        setNumberImage(number);
+        setNumberImage(128);
         
         setScale(120);
     }       
