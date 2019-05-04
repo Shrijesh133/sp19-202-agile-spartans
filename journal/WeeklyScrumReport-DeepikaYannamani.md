@@ -78,3 +78,20 @@ No Blockers
 - Task1: 4h
 - Task2: 4h
 - Task3: 4h
+
+
+## WEEK 4 (04/29/19 - 05/03/19)
+
+### Finished Last Week (spent 15h)
+
+- 04/29/19:  Bug fixing (4h)
+- 04/30/19 : Design review and code review (3h)
+- 04/01/19 : UML sequence diagram (2h)
+- 04/02/19 : UML class diagram(3h)
+- 04/03/19 : Documentation and Video(3h)
+
+
+### Problems
+## Blockers :
+No Blockers
+
