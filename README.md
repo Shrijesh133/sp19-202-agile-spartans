@@ -21,6 +21,13 @@ Agile Spartans
 ## Project Description
 This project is a re-implementation of the classic 2048 game. We have added design patterns and extra functionalities.
 
+![Menu](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Menu.PNG)
+![How To Play](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Options.PNG)
+![Game Play](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Game Play.PNG)
+![Game Pause](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Game Pause.PNG)
+![Low Score](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Gameover Low.PNG)
+![High Score](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Ui_Wireframes/Gameover Low.PNG)
+
 ## Project Progress
 Initially the project started with fast pace and then there were ups and downs due to conflicts and code cleaning .Then we caught the pace and finished the project in anticipated time.
 
@@ -47,7 +54,7 @@ Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
 * Shivani - State pattern, pause feature, decorator pattern
 * Deepika - Template pattern, observer pattern
 * He Jiang -Command pattern, video demo
-* Dhruvil - Memento pattern, undo feature
+* Dhruvil - Memento pattern, undo feature, Integration of each patterns implemented
 * Vaibhav - Strategy pattern, prototype pattern, play using mouse 
 
 
