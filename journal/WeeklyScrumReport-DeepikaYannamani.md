@@ -77,7 +77,7 @@ No Blockers
 
 - Task1: 4h
 - Task2: 4h
-- Task3: 4h
+- Task3: 7h
 
 
 ## WEEK 4 (04/29/19 - 05/03/19)
