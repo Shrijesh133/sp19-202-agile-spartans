@@ -346,8 +346,8 @@ public class Board extends Actor {
             Greenfoot.delay(10);
             printScore(currentState);
             getWorld().addObject(gameOverText, 240, 60);
-            getWorld().addObject(playButton, 240, 420);
-            playButton.setCommand(new PlayCommand());
+            //getWorld().addObject(playButton, 240, 420);
+            //playButton.setCommand(new PlayCommand());
         }
     }
 
