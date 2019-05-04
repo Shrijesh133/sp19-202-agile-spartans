@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class rightkey extends Actor
 {
+     public Board board;
     public rightkey(boolean inGame) //Setzt die Größe kleiner im Spiel
     {
         if(inGame)
@@ -14,7 +15,8 @@ public class rightkey extends Actor
     {
        if (Greenfoot.mouseClicked(this))
         {
-            //Greenfoot.setWorld(new Game());
+            board = (Board)getWorld().getObjects(Board.class).get(0);
+            board.moveright();
         }
     }     
 }

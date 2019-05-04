@@ -24,12 +24,12 @@ public class Game extends WorldMaster{
         
         ScoreObserver.resetScore();
         addObject(board, 60, 540);
-        addObject(soundButton,420,540);
-        addObject(exitButton,60,540);
+        addObject(soundButton,100,560);
+        addObject(exitButton,30,510);
         exitButton.setCommand(new ExitCommand()); 
         
-        addObject(undoButton,370,540); 
-        addObject(pauseButton, 110, 540);
+        addObject(undoButton,30,560); 
+        addObject(pauseButton, 100, 510);
         
         Greenfoot.start(); //Starts game automatically
     }
