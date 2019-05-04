@@ -281,7 +281,7 @@ public class Board extends Actor {
                 case 4: 
                 number = NumberedBlockStore.getNumberedBlock("NumberedBlock4");
                 break;
-                    case 8: 
+                case 8: 
                 number = NumberedBlockStore.getNumberedBlock("NumberedBlock8");
                 break;  
                 case 16: 
@@ -417,7 +417,7 @@ public class Board extends Actor {
                 
             }
             ratingDecorator.display();
-          
+            
         }
     }
 

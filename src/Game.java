@@ -20,16 +20,16 @@ public class Game extends WorldMaster{
      */
     public Game() //Create the world and start the game automatically
     {    
-        super(480, 600, 1); //Creates the world (480 * 600, since each field is 120 * 120 large + 1 row for score etc. | a 4 * 5 world would work too, but the "small scaling" will not align the objects so well)
+       super(480, 600, 1); //Creates the world (480 * 600, since each field is 120 * 120 large + 1 row for score etc. | a 4 * 5 world would work too, but the "small scaling" will not align the objects so well)
         
         ScoreObserver.resetScore();
         addObject(board, 60, 540);
-        addObject(soundButton,420,540);
-        addObject(exitButton,60,540);
+        addObject(soundButton,100,560);
+        addObject(exitButton,30,510);
         exitButton.setCommand(new ExitCommand()); 
         
-        addObject(undoButton,370,540); 
-        addObject(pauseButton, 110, 540);
+        addObject(undoButton,30,560); 
+        addObject(pauseButton, 100, 510);
         
         Greenfoot.start(); //Starts game automatically
     }
