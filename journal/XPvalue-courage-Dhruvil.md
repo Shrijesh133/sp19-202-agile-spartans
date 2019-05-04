@@ -1,0 +1,13 @@
+# XP Core Value - Courage - Dhruvil Parikh
+
+## Week 1 (April 6th - April 12th)
+ - During the first week, we have kept the courage value very well. This team project was a coding marathon that's four-week long, and it seemed very intimidating at first. We were uncertain about what we should choose to do for the project, but meeting with the group was definitely helpful for making us believe in ourselves and to be more courageous. After the heated debates in the group chat and several face-to-face meetings, we realized we could achieve a lot as a group and became fearless. 
+
+## Week 2 (April 13th - April 19th)
+ - When we were planning and assigning tasks, we had kept the courage value. We would not lie about our ideas or our abilities, and we had the enough courage to let each other know our candid thoughts. Although when we discussed the feasible patterns, one group member was afraid that implementing the patterns that we have not studied in class would be difficult; we decided to study those patterns on our own and make sure everyone in the group understood how they work. Keeping the courage value was very helpful for our group, because if we had not had the courage to study and use new patterns we would have been stuck in the safety zone forever and would not have known how to implement the new patterns.
+
+## Week 3 (April 20th - April 26th)
+ - When we were coding, we always had to face unforseeable consequences. The implementation phase was very challenging especially because this was our first time using Greenfoot to implement a game. It was also hard because we were also taking other coding classes and had multiple responsibilities. During this stage, sometimes one of us would have to dedicate more time on another subject, or sometimes one would encounter a bug that was a headache to resolve. Despite the difficulties, we never hid our progress from each other. We had the courage to admit the challenges, to ask for help and understanding in the group, and to step forward together.
+
+## Week 4 (April 27th - May 3rd)
+ - Having gone through the hardest phases in our project, we could almost see the completion of the project. This made us realized how important it was to keep the XP core value of courage. If we had not stood together and faced the problems together, we could not have achieved what we have done in this project. The group members gave each other support and courage to keep going. We have all gone through different situations and hardships throughout this project, but we were able to overcome them as a group because we have kept the courage value.
