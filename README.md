@@ -49,3 +49,11 @@ Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
 * He Jiang -Command pattern, video demo
 * Dhruvil - Memento pattern, undo feature
 * Vaibhav - Strategy pattern, prototype pattern, play using mouse 
+
+
+## WOW Factors :
+* Implemented three new patterns not discussed in class.
+    -> Template pattern
+    -> Memento Pattern
+    -> Prototype Pattern
+* Added mouse support to the game
