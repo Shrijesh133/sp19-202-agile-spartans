@@ -22,6 +22,15 @@ Agile Spartans
 This project is a re-implementation of the classic 2048 game. We have added design patterns and extra functionalities.
 
 ## Project Progress
+Initially the project started with fast pace and then there were ups and downs due to conflicts and code cleaning .Then we caught the pace and finished the project in anticipated time.
+
+We tracked issues in project dashboard as:
+ * TO-DO
+ * IN PROGRESS
+ * DONE
+ * CLOSED
+ 
+ which made us track the status of project at any time.
 
 ### Burndown Map
 ![BurndownChart](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/Burndown%20Chart.png)
@@ -35,8 +44,8 @@ Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
 
 
 ### Individual Contributions
-Shivani - State pattern, pause feature, decorator pattern
-Deepika - Template pattern, observer pattern
-He Jiang - Command pattern, video demo
-Dhruvil - Memento pattern, undo feature
-Vaibhav - Strategy pattern, prototype pattern
+* Shivani - State pattern, pause feature, decorator pattern
+* Deepika - Template pattern, observer pattern
+* He Jiang -Command pattern, video demo
+* Dhruvil - Memento pattern, undo feature
+* Vaibhav - Strategy pattern, prototype pattern, play using mouse 
