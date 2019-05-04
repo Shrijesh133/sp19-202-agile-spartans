@@ -17,10 +17,11 @@ public abstract class MoveSubject
 
     public  MoveSubject (Field[][] field) {
         this.field = field;
+          scoreObserver = new  ScoreObserver(this);
         highscoreObserver = new HighscoreObserver(this);
-        scoreObserver = new  ScoreObserver(this);
-        this.attach(highscoreObserver);
-        this.attach(scoreObserver);       
+          
+        this.attach(scoreObserver); 
+        this.attach(highscoreObserver);    
     }
 
 
