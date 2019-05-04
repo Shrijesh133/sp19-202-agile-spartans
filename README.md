@@ -31,7 +31,7 @@ This project is a re-implementation of the classic 2048 game. We have added desi
 
 ### Project Dashboard
 Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
-![Project Dashboard]()
+![Project Dashboard](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/proj%20dash.png)
 
 
 ### Individual Contributions
