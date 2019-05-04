@@ -19,7 +19,7 @@ Agile Spartans
 2048 GAME
 
 ## Project Description
-
+This project is a re-implementation of the classic 2048 game. We have added design patterns and extra functionalities.
 
 ## Project Progress
 
@@ -31,7 +31,12 @@ Agile Spartans
 
 ### Project Dashboard
 Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
-
+![Project Dashboard]()
 
 
 ### Individual Contributions
+Shivani - State pattern, pause feature, decorator pattern
+Deepika - Template pattern, observer pattern
+He Jiang - Command pattern, video demo
+Dhruvil - Memento pattern, undo feature
+Vaibhav - Strategy pattern, prototype pattern
