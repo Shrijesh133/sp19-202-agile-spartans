@@ -49,6 +49,8 @@ We tracked issues in project dashboard as:
 Link to Board : https://github.com/nguyensjsu/sp19-202-agile-spartans/projects/1
 ![Project Dashboard](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/docs/proj%20dash.png)
 
+### Project Retro
+![Retrospective](https://github.com/nguyensjsu/sp19-202-agile-spartans/blob/master/journal/SprintRetro.png)
 
 ### Individual Contributions
 * Shivani - State pattern, pause feature, decorator pattern
